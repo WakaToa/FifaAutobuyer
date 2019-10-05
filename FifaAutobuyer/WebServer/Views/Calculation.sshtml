@@ -1,0 +1,73 @@
+﻿@Master['MasterPage']
+@Section['Content']
+<div class="content-wrapper">
+	<section class="content-header">
+		<h1>Manage Calculation Values</h1>
+	</section>
+	<section class="content">
+		<div class="row">
+			<section class="col-md-12">
+				<section>
+					<div class="box box-info col-sm-1">
+						<div class="box-header with-border">
+							<h3 class="box-title">Edit Cards Required for AVG2</h3>
+							<div class="pull-right box-tools">
+								<button class="btn btn-box-tool" data-widget="collapse">
+								<i class="fa fa-minus"></i>
+								</button>
+							</div>
+						</div>
+						<div class="box-body">
+							<table id="cardsRequiredTable" class="table table-bordered table-striped sortable">
+								<button id="saveAllItemsButton" class="btn btn-block btn-success" onclick="saveAllItems();">Save all Items</button>
+								<thead>
+									<tr>
+										<th width="15%">Minimum Coins</th>
+										<th width="6%">Maximum Coins</th>
+										<th width="7%">Count</th>
+										<th width="5%">Remove</th>
+										<th width="5%">Save</th>
+									</tr>
+								</thead>
+								<tbody id="cardsRequiredTableBody">
+									@Each.FutListItems
+									<tr>
+										<td><input min="0" type="number" class="form-control" id="staticBuyPercent_@Current.ID" name="staticBuyPercent_@Current.ID" value="@Current.StaticBuyPercent"></td>
+										<td><input min="0" type="number" class="form-control" id="staticBuyPercent_@Current.ID" name="staticBuyPercent_@Current.ID" value="@Current.StaticBuyPercent"></td>
+										<td><input min="0" type="number" class="form-control" id="variableBuyPercent_@Current.ID" name="variableBuyPercent_@Current.ID" value="@Current.VariableBuyPercent"></td>
+										<td><button class="btn btn-block btn-success" onclick="removeItemFromList('@Current.ID');">Remove</button></td>
+										<td><button class="btn btn-block btn-success" onclick="saveItem('@Current.ID');">Save</button></td>
+									</tr>
+									@EndEach
+								</tbody>
+								<tfoot>
+									<tr>
+										<th width="15%">Item</th>
+										<th width="6%">Static Buy %</th>
+										<th width="7%">Variable Buy %</th>
+										<th width="7%">Buy % Step</th>
+										<th width="6%">Counter</th>
+										<th width="6%">Sell %</th>
+										<th width="6%">Buyprice</th>
+										<th width="6%">Sellprice</th>
+										<th width="5%">Ignore PC</th>
+										<th width="3%">Buy</th>
+										<th width="5%">Discard</th>
+										<th width="8%">Last Pricecheck</th>
+										<th width="8%">Reset Pricecheck</th>
+										<th width="5%">Remove</th>
+										<th width="5%">Save</th>
+									</tr>
+								</tfoot>
+							</table>
+						</div>
+						<div class="overlay" id="overlayEditItem" style="display: none">
+							<i class="fa fa-refresh fa-spin"></i>
+						</div>
+					</div>
+				</section>
+			</section>
+		</div>
+	</section>
+</div>
+@EndSection

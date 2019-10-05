@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Autobuyer.web</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
+
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	
+	
+  </head>
+  <body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+
+      <header class="main-header">
+        <div class="logo">
+          <span class="logo-mini"><b>AB</b>16</span>
+          <span class="logo-lg"><b>Autobuyer</b>.web</span>
+        </div>
+
+        <nav class="navbar navbar-static-top" role="navigation">
+          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+          </a>
+          <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+			   <li class="dropdown user user-menu">
+					<a href="logout" class="toggle" data-toggle="dropdown">
+						<span class="hidden-xs">Menu</span>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="user-footer">
+							<a href="logout" class="btn btn-default btn-flat">Sign out</a>
+						</li>
+					</ul>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+	  
+      <aside class="main-sidebar">
+        <section class="sidebar">
+          <ul class="sidebar-menu">
+			<li><a href="/"><i class="fa fa-link"></i> <span>Home {DATABASENAME}</span></a></li>
+			<li><a href="notificationcenter"><i class="fa fa-link"></i> <span>Notification Center</span><span class="label label-primary pull-right">{NOTIFICATIONCOUNT}</span></a></li>
+            <li class="header">SETTINGS</li>
+			<li><a href="botmanager"><i class="fa fa-link"></i> <span>Bot Manager</span></a></li>
+            <li><a href="generalsettings"><i class="fa fa-link"></i> <span>General Settings</span></a></li>
+			<li><a href="managelist"><i class="fa fa-link"></i> <span>Manage List</span></a></li>
+			<li class="treeview">
+              <a href="#"><i class="fa fa-link"></i> <span>Manage Accounts</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li><a href="addaccount"><i class="fa fa-circle-o"></i>Add Account</a></li>
+                <li><a href="editaccount"><i class="fa fa-circle-o"></i>Edit Account</a></li>
+              </ul>
+            </li>
+			<li class="header">LOGS</li>
+            <li class="treeview">
+              <a href="#"><i class="fa fa-link"></i> <span>BIN Logs</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li><a href="profitlogs?type=BIN"><i class="fa fa-circle-o"></i>Profit Logs</a></li>
+                <li><a href="buys?type=BIN"><i class="fa fa-circle-o"></i>Buys</a></li>
+				<li><a href="sells?type=BIN"><i class="fa fa-circle-o"></i>Sells</a></li>
+              </ul>
+            </li>
+			<li class="treeview">
+              <a href="#"><i class="fa fa-link"></i> <span>BID Logs</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li><a href="profitlogs?type=BID"><i class="fa fa-circle-o"></i>Profit Logs</a></li>
+                <li><a href="buys?type=BID"><i class="fa fa-circle-o"></i>Buys</a></li>
+				<li><a href="sells?type=BID"><i class="fa fa-circle-o"></i>Sells</a></li>
+              </ul>
+            </li>
+			<li class="treeview">
+              <a href="#"><i class="fa fa-link"></i> <span>Combined Logs</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li><a href="profitlogs?type=CMB"><i class="fa fa-circle-o"></i>Profit Logs</a></li>
+                <li><a href="buys?type=CMB"><i class="fa fa-circle-o"></i>Buys</a></li>
+				<li><a href="sells?type=CMB"><i class="fa fa-circle-o"></i>Sells</a></li>
+              </ul>
+            </li>
+			<li class="active"><a href="botlogs"><i class="fa fa-link"></i> <span>Bot Logs</span></a></li>
+			<li><a href="exceptionlogs"><i class="fa fa-link"></i> <span>Exception Logs</span></a></li>
+			<li><a href="itemstatistic"><i class="fa fa-link"></i> <span>Item Statistic</span></a></li>
+			<li><a href="accountstatistic"><i class="fa fa-link"></i> <span>Account Statistic</span></a>
+			<li><a href="botstatistic"><i class="fa fa-link"></i> <span>Bot Statistic</span></a></li>
+			<li><a href="mule"><i class="fa fa-link"></i> <span>Mule Manager</span></a></li>
+          </ul>
+        </section>
+      </aside>
+
+      <div class="content-wrapper">
+        <section class="content-header">
+          <h1>
+            Bot Logs
+          </h1>
+        </section>
+
+        <section class="content">
+			<div class="row">
+				<div class="col-xs-12">
+				<div class="box box-info col-sm-1">
+					<div class="box-header">
+						<h3 class="box-title">Bot Logs</h3>
+					</div>
+					<div class="box-body table-responsive no-padding">
+						<table class="table table-hover">
+							<tr>
+								<th width=5%>ID</th>
+								<th width=20%>Account</th>
+								<th width=65%>Data</th>
+								<th width=20%>Timestamp</th>
+							</tr>
+							{LOGDATA}
+						</table>
+
+					</div>
+					<div class="box-footer">
+						<a href="/botlogs?page=" class="btn btn-sm btn-info btn-flat pull-left">Previous</a>
+						<a href="/botlogs?page=" class="btn btn-sm btn-info btn-flat pull-right">Next</a>
+					</div>
+				</div>
+            </div>
+          </div>
+		  
+        </section>
+      </div>
+    </div>
+
+
+    <script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="dist/js/app.min.js"></script>
+  </body>
+</html>

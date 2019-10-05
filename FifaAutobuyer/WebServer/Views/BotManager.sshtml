@@ -1,0 +1,110 @@
+﻿@Master['MasterPage']
+@Section['Content']
+<div class="content-wrapper">
+	<section class="content-header">
+		<h1>Bot Manager</h1>
+	</section>
+	<section class="content">
+		<div class="box box-info col-sm-1">
+			<div class="box-header">
+				<i class="glyphicon glyphicon-euro"></i>
+				<h3 class="box-title">Manage Bot</h3>
+			</div>
+			<div class="box-body">
+				<button class="btn btn-block btn-success btn-lg" style="margin-top: 20px" onclick="startAccounts();">Start all Accounts</button>
+				<button class="btn btn-block btn-success btn-lg" style="margin-top: 20px" onclick="startNotRunningAccounts();">Start all not running Accounts</button>
+				<button class="btn btn-block btn-danger btn-lg" style="margin-top: 20px" onclick="stopAccounts();">Stop all Accounts</button>
+				<button class="btn btn-block btn-primary btn-lg" style="margin-top: 20px" onclick="resetPricechecks();">Reset Pricechecks</button>
+			</div>
+			<div class="box-footer" style="text-align: center;">
+				Running Accounts: @Model.RunningAccounts / @Model.TotalAccounts
+			</div>
+			<div class="overlay" id="overlay" style="display: none">
+				<i class="fa fa-refresh fa-spin"></i>
+			</div>
+		</div>
+	</section>
+</div>
+<script>
+	function startAccounts()
+	{
+		$("#overlay").css("display", "");
+		httpPost("/botmanager", "startbot=true", function(req)
+		{
+			$("#overlay").css("display", "none");
+			window.location.replace("/botmanager");
+		});
+	}
+		
+	function startNotRunningAccounts()
+	{
+		$("#overlay").css("display", "");
+		httpPost("/botmanager", "startnotrunningbot=true", function(req)
+		{
+			$("#overlay").css("display", "none");
+			window.location.replace("/botmanager");
+		});
+	}
+		
+	function stopAccounts()
+	{
+		$("#overlay").css("display", "");
+		httpPost("/botmanager", "stopbot=true", function(req)
+		{
+			$("#overlay").css("display", "none");
+			window.location.replace("/botmanager");
+		});
+	}
+		
+	function resetPricechecks()
+	{
+		$("#overlay").css("display", "");
+		httpPost("/resetpricechecks", "", function(req)
+		{
+			$("#overlay").css("display", "none");
+			window.location.replace("/botmanager");
+		});
+	}
+		
+	function httpPost(url, postdata, callback, async)
+	{
+		function getXMLHttpRequest() 
+		{
+			if (window.XMLHttpRequest) {
+				return new window.XMLHttpRequest;
+			} else 
+			{
+				try 
+				{
+					return new ActiveXObject("MSXML2.XMLHTTP");
+				} 
+				catch (ex)
+				{
+					return null;
+				}
+			}
+		}
+	
+		function handler() 
+		{
+			if (oReq.readyState == 4 /* complete */ ) 
+			{
+				callback(oReq);
+			}
+		}
+	
+		var oReq = getXMLHttpRequest();
+	
+		if (oReq != null) 
+		{
+			oReq.open("POST", url, (typeof async === "undefined") ? true : async);
+			oReq.onreadystatechange = handler;
+			oReq.send(postdata);
+		} else 
+		{
+			window.alert("AJAX (XMLHTTP) not supported.");
+		}
+	
+	}
+</script>
+@EndSection

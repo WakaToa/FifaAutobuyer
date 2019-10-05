@@ -1,0 +1,184 @@
+﻿@Master['MasterPage']
+@Section['Content']
+<div class="content-wrapper">
+	<section class="content-header">
+		<h1>Account Manager</h1>
+	</section>
+	<section class="content">
+		<div class="row">
+			<section class="col-md-12">
+				<div class="box box-info col-sm-1">
+					<div class="box-body table-responsive">
+						<form role="form" action="/accountmanager" method="post">
+							<div class="box-body">
+								<div class="form-group">
+									<label>
+									Format:</br>
+									EMail;Password;SecurityAnswer;AppAuthCode;EMailPassword</br>
+									</label>
+									<textarea autocomplete="off" class="form-control" rows="6" name="accounts" id="accounts" placeholder="Enter ..."></textarea>
+								</div>
+							</div>
+							<div class="box-footer">
+								<button type="submit" class="btn btn-primary">Add accounts</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</section>
+			<section class="col-md-12">
+				<div class="box box-info col-sm-1">
+					<div class="box-body table-responsive">
+						<table id="accountManager" class="table table-bordered table-striped sortable">
+							<thead>
+								<tr>
+									<th width="5%">Delete</th>
+									<th width="5%">Platform</th>
+									<th width="20%">EMail</th>
+									<th width="10%">Password</th>
+									<th width="10%">SecurityAnswer</th>
+									<th width="10%">GoogleAuthCode</th>
+									<th width="10%">EMailPassword</th>
+									<th width="20%">Proxy</th>
+									<th width="10%">Delete</th>
+								</tr>
+							</thead>
+							<tbody>
+								@Each.Accounts
+								<tr id="@Current.EMail">
+									<td><input type="checkbox"></td>
+									<td>@Current.FUTPlatform.GameSKU</td>
+									<td>@Current.EMail</td>
+									<td>@Current.Password</td>
+									<td>@Current.SecurityAnswer</td>
+									<td>@Current.GoogleAuthCode</td>
+									<td>@Current.EMailPassword</td>
+									<td>@Current.ProxyString</td>
+									<td><button class="btn btn-block btn-primary btn-xs" onclick="deleteAccount('@Current.EMail');">Delete</button></td>
+								</tr>
+								@EndEach
+							</tbody>
+						</table>
+					</div>
+					<div class="box-footer">
+						<button type="button" class="btn btn-block btn-primary" onclick="window.location.href='/export/accounts';">Export accounts</button>
+						<button type="button" class="btn btn-block btn-primary" onclick="deleteAccounts();">Delete all selected accounts</button>
+						<button type="button" class="btn btn-block btn-primary" onclick="deleteAllAccounts();">Delete all accounts</button>
+					</div>
+				</div>
+			</section>
+		</div>
+	</section>
+</div>
+<script>
+	function deleteAccounts()
+	{
+		var allids = "";
+		var table = document.getElementById("accountManager");
+		for (var i = 0, row; row = table.rows[i]; i++) {
+			if(row.id == "")
+			{
+				continue;
+			}
+			var checked = row.cells[0].childNodes[0].checked;
+			if(checked)
+			{
+				allids += row.id + ",";
+			}
+		}
+		if(allids.endsWith(","))
+		{
+			allids = allids.substring(0, allids.length - 1);
+		}
+		if(allids == "")
+		{
+			return;
+		}
+			
+		httpPost("/deleteaccountarray", "account="+encodeURIComponent(allids), function(req)
+		{
+			var result = req.responseText;
+			if (result == "true") {
+				location.reload();
+			}
+		});	
+	}
+	function deleteAllAccounts()
+	{
+		var allids = "";
+		var table = document.getElementById("accountManager");
+		for (var i = 0, row; row = table.rows[i]; i++) {
+			if(row.id == "")
+			{
+				continue;
+			}
+			allids += row.id + ",";
+		}
+		if(allids.endsWith(","))
+		{
+			allids = allids.substring(0, allids.length - 1);
+		}
+		if(allids == "")
+		{
+			return;
+		}
+		
+		httpPost("/deleteaccountarray", "account="+encodeURIComponent(allids), function(req)
+		{
+			var result = req.responseText;
+			if (result == "true") {
+				location.reload();
+			}
+		});	
+	}
+	function deleteAccount(id)
+	{
+		httpPost("/deleteaccount", "account="+encodeURIComponent(id), function(req)
+		{
+			var result = req.responseText;
+			if (result == "true") {
+				location.reload();
+			}
+		});	
+	}
+	function httpPost(url, postdata, callback, async)
+	{
+		function getXMLHttpRequest() 
+		{
+			if (window.XMLHttpRequest) {
+				return new window.XMLHttpRequest;
+			} else 
+			{
+				try 
+				{
+					return new ActiveXObject("MSXML2.XMLHTTP");
+				} 
+				catch (ex)
+				{
+					return null;
+				}
+			}
+		}
+	
+		function handler() 
+		{
+			if (oReq.readyState == 4 /* complete */ ) 
+			{
+				callback(oReq);
+			}
+		}
+	
+		var oReq = getXMLHttpRequest();
+	
+		if (oReq != null) 
+		{
+			oReq.open("POST", url, (typeof async === "undefined") ? true : async);
+			oReq.onreadystatechange = handler;
+			oReq.send(postdata);
+		} else 
+		{
+			window.alert("AJAX (XMLHTTP) not supported.");
+		}
+	}
+</script>
+@EndSection

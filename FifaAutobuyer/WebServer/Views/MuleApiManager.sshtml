@@ -1,0 +1,244 @@
+﻿@Master['MasterPage']
+@Section['Content']
+<div class="content-wrapper">
+	<section class="content-header">
+		<h1>Mule Api Manager</h1>
+	</section>
+	<section class="content">
+		<div class="row">
+			<section class="col-md-12">
+				<div class="box box-info col-sm-1">
+					<div class="box-header with-border">
+						<h3 class="box-title">Mule Api Settings</h3>
+						<div class="pull-right box-tools">
+							<button class="btn btn-box-tool" data-widget="collapse">
+							<i class="fa fa-minus"></i>
+							</button>
+						</div>
+					</div>
+					<form class="form-horizontal" action="/muleapimanager" method="post">
+						<div class="box-body">
+							<div class="row" style="margin-top:20px;">
+								<label for="GTEPartnerID" class="col-sm-3 control-label">GTE Partner Id</label>
+								<div class="col-xs-2">
+									<input type="text" class="form-control" autocomplete="off" name="GTEPartnerID" placeholder="GTE Partner Id" value="@Model.GTEPartnerID">
+								</div>
+								<label for="GTEPartnerApiKey" class="col-sm-3 control-label">GTE Partner ApiKey</label>
+								<div class="col-xs-2">
+									<input type="text" class="form-control" autocomplete="off" name="GTEPartnerApiKey" placeholder="GTE Partner ApiKey" value="@Model.GTEPartnerApiKey">
+								</div>
+							</div>
+							<div class="row" style="margin-top:20px;">
+								<label for="MuleFactoryUser" class="col-sm-3 control-label">MuleFactory User</label>
+								<div class="col-xs-2">
+									<input type="text" class="form-control" autocomplete="off" name="MuleFactoryUser" placeholder="MuleFactory User" value="@Model.MuleFactoryUser">
+								</div>
+								<label for="MuleFactorySecretWord" class="col-sm-3 control-label">MuleFactory SecretWord</label>
+								<div class="col-xs-2">
+									<input type="text" class="form-control" autocomplete="off" name="MuleFactorySecretWord" placeholder="MuleFactory SecretWord" value="@Model.MuleFactorySecretWord">
+								</div>
+							</div>
+							<div class="row" style="margin-top:20px;">
+								<label for="WholeSaleApiKey" class="col-sm-3 control-label">WholeSale ApiKey</label>
+								<div class="col-xs-2">
+									<input type="text" class="form-control" autocomplete="off" name="WholeSaleApiKey" placeholder="WholeSale ApiKey" value="@Model.WholeSaleApiKey">
+								</div>
+								<label for="WholeSaleClientPlatform" class="col-sm-3 control-label">WholeSale Client Platform</label>
+								<div class="col-xs-2">
+									@If.WholeSalePlatformPS4
+									<select class="form-control" name="WholeSaleClientPlatform">
+										<option value="FFA18PS4" selected>Playstation 4</option>
+										<option value="FFA18XBO"> Xbox One</option>
+									</select>
+									@EndIf
+									@IfNot.WholeSalePlatformPS4
+									<select class="form-control" name="WholeSaleClientPlatform">
+										<option value="FFA18PS4">Playstation 4</option>
+										<option value="FFA18XBO" selected> Xbox One</option>
+									</select>
+									@EndIf
+								</div>
+							</div>
+							<div class="row" style="margin-top:20px;">
+								<label for="GTEClientPlatform" class="col-sm-3 control-label">GTE Client Platform</label>
+								<div class="col-xs-2">
+									@If.GTEClientPlatformPS4
+									<select class="form-control" name="GTEClientPlatform">
+										<option value="FFA18PS4" selected>Playstation 4</option>
+										<option value="FFA18XBO"> Xbox One</option>
+									</select>
+									@EndIf
+									@IfNot.GTEClientPlatformPS4
+									<select class="form-control" name="GTEClientPlatform">
+										<option value="FFA18PS4">Playstation 4</option>
+										<option value="FFA18XBO" selected> Xbox One</option>
+									</select>
+									@EndIf
+								</div>
+								<label for="MuleFactoryClientPlatform" class="col-sm-3 control-label">MuleFactory Client Platform</label>
+								<div class="col-xs-2">
+									@If.MuleFactoryPlatformPS4
+									<select class="form-control" name="MuleFactoryClientPlatform">
+										<option value="ps4" selected>Playstation 4</option>
+										<option value="xbox"> Xbox One</option>
+									</select>
+									@EndIf
+									@IfNot.MuleFactoryPlatformPS4
+									<select class="form-control" name="MuleFactoryClientPlatform">
+										<option value="ps4">Playstation 4</option>
+										<option value="xbox" selected> Xbox One</option>
+									</select>
+									@EndIf
+								</div>
+							</div>
+							<div class="row" style="margin-top:20px;">
+								<label for="MuleApiMaxSellPerDayPerAccount" class="col-sm-3 control-label">Max sell per day per account</label>
+								<div class="col-xs-2">
+									<input min="0" type="number" class="form-control" name="MuleApiMaxSellPerDayPerAccount" value="@Model.MuleApiMaxSellPerDayPerAccount">
+								</div>
+								<label for="MuleApiMaxTransactionValue" class="col-sm-3 control-label">Max transaction value</label>
+								<div class="col-xs-2">
+									<input min="0" type="number" class="form-control" name="MuleApiMaxTransactionValue" value="@Model.MuleApiMaxTransactionValue">
+								</div>
+							</div>
+							<div class="row" style="margin-top:20px;">
+								<label for="MuleApiMinCoinsOnAccount" class="col-sm-3 control-label">Min coins on account</label>
+								<div class="col-xs-2">
+									<input min="0" type="number" class="form-control" name="MuleApiMinCoinsOnAccount" value="@Model.MuleApiMinCoinsOnAccount">
+								</div>
+								<label for="MuleApiRequestDelay" class="col-sm-3 control-label">Request delay (ms)</label>
+								<div class="col-xs-2">
+									<input min="0" type="number" class="form-control" name="MuleApiRequestDelay" value="@Model.MuleApiRequestDelay">
+								</div>
+							</div>
+							<div class="row" style="margin-top:20px;">
+								<label for="MuleApiSellDelayPerAccount" class="col-sm-3 control-label">Sell delay per account (min)</label>
+								<div class="col-xs-2">
+									<input min="0" type="number" class="form-control" name="MuleApiSellDelayPerAccount" value="@Model.MuleApiSellDelayPerAccount">
+								</div>
+							</div>
+						</div>
+						<div class="box-footer">
+							<button type="submit" id="saveSettings" name="saveSettings" class="btn btn-info pull-right" onclick="">Save Settings</button>
+						</div>
+					</form>
+				</div>
+			</section>
+			<section class="col-md-12">
+				<div class="box box-info col-sm-1">
+					<div class="box-body table-responsive">
+						<table id="muleStatistic" class="table table-bordered table-striped sortable">
+							<thead>
+								<tr>
+									<th width="25%">Api</th>
+									<th width="15%">Start/Stop</th>
+									<th width="30%">Total $ Volume</th>
+									<th width="30%">Total Coin Volume</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th>GameTradeEasy</th>
+									<td>
+										@IfNot.GameTradeEasyApiClientRunning
+											<button class="btn btn-block btn-success" onclick="startOrStop('gte');">Start</button>
+										@EndIf
+										@If.GameTradeEasyApiClientRunning
+											<button class="btn btn-block btn-danger" onclick="startOrStop('gte');">Stop</button>
+										@EndIf
+									</td>
+									<td>@Model.GTETotalDollarVolume</td>
+									<td>@Model.GTETotalCoinVolume</td>
+								</tr>
+								<tr>
+									<th>MuleFactory</th>
+									<td>
+										@IfNot.MuleFactoryApiClientRunning
+											<button class="btn btn-block btn-success" onclick="startOrStop('mf');">Start</button>
+										@EndIf
+										@If.MuleFactoryApiClientRunning
+											<button class="btn btn-block btn-danger" onclick="startOrStop('mf');">Stop</button>
+										@EndIf
+									</td>
+									<td>@Model.MFTotalDollarVolume</td>
+									<td>@Model.MFTotalCoinVolume</td>
+								</tr>
+								<tr>
+									<th>WholeSale</th>
+									<td>
+										@IfNot.WholeSaleApiClientRunning
+											<button class="btn btn-block btn-success" onclick="startOrStop('ws');">Start</button>
+										@EndIf
+										@If.WholeSaleApiClientRunning
+											<button class="btn btn-block btn-danger" onclick="startOrStop('ws');">Stop</button>
+										@EndIf
+									</td>
+									<td>@Model.WSTotalDollarVolume</td>
+									<td>@Model.WSTotalCoinVolume</td>
+								</tr>
+								<tr>
+									<th>Total</th>
+									<td></td>
+									<td>@Model.TotalDollarVolume</td>
+									<td>@Model.TotalCoinVolume</td>
+								</tr>
+								<tr>
+									<th>Available</th>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="overlay" id="overlayStartStop" style="display: none">
+						<i class="fa fa-refresh fa-spin"></i>
+					</div>
+				</div>
+			</section>
+		</div>
+	</section>
+</div>
+
+<script>
+	function startOrStop(id) {
+	    $('#overlayStartStop').css('display', '');
+	    httpPost("/muleapimanager", "action=startstop&id=" + encodeURIComponent(id), function (req) {
+	        location.reload();
+	    });
+	}
+	
+	function httpPost(url, postdata, callback, async) {
+	    function getXMLHttpRequest() {
+	        if (window.XMLHttpRequest) {
+	            return new window.XMLHttpRequest;
+	        } else {
+	            try {
+	                return new ActiveXObject("MSXML2.XMLHTTP");
+	            }
+	            catch (ex) {
+	                return null;
+	            }
+	        }
+	    }
+	
+	    function handler() {
+	        if (oReq.readyState == 4 /* complete */) {
+	            callback(oReq);
+	        }
+	    }
+	
+	    var oReq = getXMLHttpRequest();
+	
+	    if (oReq != null) {
+	        oReq.open("POST", url, (typeof async === "undefined") ? true : async);
+	        oReq.onreadystatechange = handler;
+	        oReq.send(postdata);
+	    } else {
+	        window.alert("AJAX (XMLHTTP) not supported.");
+	    }
+	
+	}
+</script>
+
+@EndSection

@@ -1,0 +1,45 @@
+﻿@Master['MasterPage']
+@Section['Content']
+<div class="content-wrapper">
+	<section class="content-header">
+		<h1>@Model.Title</h1>
+	</section>
+	<section class="content">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="box box-info col-sm-1">
+					<div class="box-header">
+						<h3 class="box-title">@Model.Title</h3>
+					</div>
+					<div class="box-body table-responsive no-padding">
+						<table class="table table-hover">
+							<tr>
+								<th>ID</th>
+								<th>Date</th>
+								<th>TradeID</th>
+								<th>Item</th>
+								<th>ResourceID</th>
+								<th>@Model.PriceString</th>
+							</tr>
+							@Each.Logs
+							<tr>
+								<td>@Current.ID</td>
+								<td>@Current.TimestampString</td>
+								<td>@Current.TradeID</td>
+								<td><a target="_blank" href="/profitlogs?type=@Model.LogType&assetid=@Current.ResourceID&revid=@Current.RevisionID">@Current.ItemName</a></td>
+								<td>@Current.ResourceID/@Current.RevisionID</td>
+								<td>@Current.Price</td>
+							</tr>
+							@EndEach
+						</table>
+					</div>
+					<div class="box-footer">
+						@Model.FooterPrevious
+						@Model.FooterNext
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+@EndSection

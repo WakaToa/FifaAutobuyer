@@ -1,0 +1,360 @@
+﻿@Master['MasterPage']
+@Section['Content']
+<div class="content-wrapper">
+	<section class="content-header">
+		<h1>Manage List</h1>
+	</section>
+	<section class="content">
+		<div class="alert alert-danger alert-dismissible" id="errorBox" style="@Model.DisplayErrorStyle">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+			<h4><i class="icon fa fa-ban"></i>Error!</h4>
+			@Model.ErrorMessage
+		</div>
+		<div class="row">
+			<section class="col-md-12">
+				<div class="box box-info col-sm-1">
+					<div class="box-header with-border">
+						<h3 class="box-title">Add Item to List</h3>
+						<div class="pull-right box-tools">
+							<button class="btn btn-box-tool" data-widget="collapse">
+							<i class="fa fa-minus"></i>
+							</button>
+						</div>
+					</div>
+					<div class="box-body">
+						<div class="form-group">
+							<label>Search for Item</label>
+							<input id="searchForItem" autocomplete="off" type="text" class="form-control" placeholder="Name..." onkeydown="searchForItems(this);">
+						</div>
+					</div>
+					<form class="form-horizontal select" action="/additem" method="post" style="margin-left: 15px; margin-right: 15px">
+						<div class="box-body">
+							<div class="form-group">
+								<label>Select Item</label>
+								<select class="form-control" id="itemsSelect" name="itemsSelect">
+								</select>
+								<label>Revision ID</label>
+								<input id="revID" min="0" autocomplete="off" type="number" class="form-control" name="revID" value="0">
+								<label>Position</label>
+								<select class="form-control" id="pos" name="pos">
+									<option value="Any" selected>Any</option>
+									<option value="GK">GK</option>
+									<option value="RWB">RWB</option>
+									<option value="RB">RB</option>
+									<option value="CB">CB</option>
+									<option value="LB">LB</option>
+									<option value="LWB">LWB</option>
+									<option value="CDM">CDM</option>
+									<option value="RM">RM</option>
+									<option value="CM">CM</option>
+									<option value="LM">LM</option>
+									<option value="CAM">CAM</option>
+									<option value="RF">RF</option>
+									<option value="CF">CF</option>
+									<option value="LF">LF</option>
+									<option value="RW">RW</option>
+									<option value="ST">ST</option>
+									<option value="LW">LW</option>
+								</select>
+								<label>ChemistryStyle</label>
+								<select class="form-control" id="playStyle" name="playStyle">
+									<option value="0" selected>All</option>
+									<option value="250">Basic</option>
+									<option value="251">Sniper</option>
+									<option value="252">Finisher</option>
+									<option value="253">Deadeye</option>
+									<option value="254">Marksman</option>
+									<option value="255">Hawk</option>
+									<option value="256">Artist</option>
+									<option value="257">Architect</option>
+									<option value="258">Powerhouse</option>
+									<option value="259">Maestro</option>
+									<option value="260">Engine</option>
+									<option value="261">Sentinel</option>
+									<option value="262">Guardian</option>
+									<option value="263">Gladiator</option>
+									<option value="264">Backbone</option>
+									<option value="265">Anchor</option>
+									<option value="266">Hunter</option>
+									<option value="267">Catalyst</option>
+									<option value="268">Shadow</option>
+									<option value="269">Wall</option>
+									<option value="270">Shield</option>
+									<option value="271">Cat</option>
+									<option value="272">Glove</option>
+									<option value="273">GkBasic</option>
+								</select>
+							</div>
+						</div>
+						<div class="box-footer">
+							<button type="submit" id="addItemButton" class="btn btn-info pull-right" disabled="true" onclick="$('#overlaySearchItem').css('display', '');">Add Item to List</button>
+						</div>
+						<input type="hidden" id="itemType" name="itemType" value="">
+						<input type="hidden" id="addAssetID" name="addAssetID" value="">
+					</form>
+					<div class="overlay" id="overlaySearchItem" style="display: none">
+						<i class="fa fa-refresh fa-spin"></i>
+					</div>
+				</div>
+				<section>
+					<div class="box box-info col-sm-1">
+						<div class="box-header with-border">
+							<h3 class="box-title">Edit Items - Total Items: @Model.FutListItems.Count</h3>
+							<div class="pull-right box-tools">
+								<button class="btn btn-box-tool" data-widget="collapse">
+								<i class="fa fa-minus"></i>
+								</button>
+							</div>
+						</div>
+						<div class="box-body table-responsive">
+							<table id="accountStatistic" class="table table-bordered table-striped sortable">
+								<button id="saveAllItemsButton" class="btn btn-block btn-success" onclick="saveAllItems();">Save all Items</button>
+								<thead>
+									<tr>
+										<th width="15%">Item</th>
+										<th width="6%">Static Buy %</th>
+										<th width="7%">Variable Buy %</th>
+										<th width="7%">Buy % Step</th>
+										<th width="6%">BuyCounter</th>
+										<th width="6%">Sell %</th>
+										<th width="6%">Buyprice</th>
+										<th width="6%">Sellprice</th>
+										<th width="5%">Ignore PC</th>
+										<th width="3%">Buy</th>
+										<th width="5%">Discard</th>
+										<th width="8%">Last Pricecheck</th>
+										<th width="8%">Reset Pricecheck</th>
+										<th width="5%">Remove</th>
+										<th width="5%">Save</th>
+									</tr>
+								</thead>
+								<tbody id="futItemsBody">
+									@Each.FutListItems
+									<tr>
+										<td id="rowDatabaseID" style="display:none">@Current.ID</td>
+										<td style="vertical-align: middle;" id="name_@Current.ID"><a target="_blank" href="/profitlogs?assetid=@Current.AssetID&revid=@Current.RevisionID">@Current.DisplayName</a></td>
+										<td><input min="0" autocomplete="off" type="number" class="form-control" id="staticBuyPercent_@Current.ID" name="staticBuyPercent_@Current.ID" value="@Current.StaticBuyPercent"></td>
+										<td><input min="0" autocomplete="off" type="number" class="form-control" id="variableBuyPercent_@Current.ID" name="variableBuyPercent_@Current.ID" value="@Current.VariableBuyPercent"></td>
+										<td><input min="0" autocomplete="off" type="number" class="form-control" id="buyPercentStep_@Current.ID" name="buyPercentStep_@Current.ID" value="@Current.BuyPercentStep"></td>
+										<td><input min="0" autocomplete="off" type="number" class="form-control" id="counter_@Current.ID" name="counter_@Current.ID" value="@Current.Counter"></td>
+										<td><input min="0" autocomplete="off" type="number" class="form-control" id="sellPercent_@Current.ID" name="sellPercent_@Current.ID" value="@Current.SellPercent"></td>
+										<td><input min="0" autocomplete="off" type="number" class="form-control" id="buyPrice_@Current.ID" name="buyPrice_@Current.ID" value="@Current.BuyPrice"></td>
+										<td><input min="0" autocomplete="off" type="number" class="form-control" id="sellPrice_@Current.ID" name="sellPrice_@Current.ID" value="@Current.SellPrice"></td>
+										<td style="vertical-align: middle"><input type="checkbox" name="ignorePriceCheck_@Current.ID" id="ignorePriceCheck_@Current.ID" @Current.IgnorePriceCheckChecked></td>
+										<td style="vertical-align: middle"><input type="checkbox" name="buyItem_@Current.ID" id="buyItem_@Current.ID" @Current.BuyItemChecked></td>
+										<td style="vertical-align: middle"><input type="checkbox" name="discardItem_@Current.ID" id="discardItem_@Current.ID" @Current.DiscardChecked></td>
+										<td id="lastPriceCheck_@Current.ID" name="lastPriceCheck_@Current.ID">@Current.LastPriceCheckString</td>
+										<td><button class="btn btn-block btn-success" onclick="resetPriceCheck('@Current.ID');">Reset PriceCheck</button></td>
+										<td><button class="btn btn-block btn-success" onclick="removeItemFromList('@Current.ID');">Remove</button></td>
+										<td><button class="btn btn-block btn-success" onclick="saveItem('@Current.ID');">Save</button></td>
+									</tr>
+									@EndEach
+								</tbody>
+								<tfoot>
+									<tr>
+										<th width="15%">Item</th>
+										<th width="6%">Static Buy %</th>
+										<th width="7%">Variable Buy %</th>
+										<th width="7%">Buy % Step</th>
+										<th width="6%">BuyCounter</th>
+										<th width="6%">Sell %</th>
+										<th width="6%">Buyprice</th>
+										<th width="6%">Sellprice</th>
+										<th width="5%">Ignore PC</th>
+										<th width="3%">Buy</th>
+										<th width="5%">Discard</th>
+										<th width="8%">Last Pricecheck</th>
+										<th width="8%">Reset Pricecheck</th>
+										<th width="5%">Remove</th>
+										<th width="5%">Save</th>
+									</tr>
+								</tfoot>
+							</table>
+						</div>
+						<div class="overlay" id="overlayEditItem" style="display: none">
+							<i class="fa fa-refresh fa-spin"></i>
+						</div>
+					</div>
+				</section>
+			</section>
+		</div>
+	</section>
+</div>
+<script>
+	function saveAllItems() {
+	    $('saveAllItemsButton').prop('disabled', true);
+	    $('#futItemsBody tr td:nth-child(1)').each(
+	     function () {
+	         $('#saveAllItemsButton').text("Saving Item " + $('#futItemsBody #name_' + this.innerText).text());
+	         saveItem(this.innerText);
+	     }
+	    );
+	    $('#saveAllItemsButton').text("!!!Reloading...!!!");
+		$("#saveAllItemsButton").toggleClass('btn-success btn-danger');
+	    location.reload();
+	}
+	
+	function resetPriceCheck(databaseID) {
+	    $('#overlayEditItem').css('display', '');
+	    httpPost("/resetpricecheck", "item=" + encodeURIComponent(databaseID), function (req) {
+	        var playerJSON = jQuery.parseJSON(req.responseText);
+	
+	        $("#staticBuyPercent_" + databaseID).val(playerJSON.StaticBuyPercent);
+	        $("#variableBuyPercent_" + databaseID).val(playerJSON.VariableBuyPercent);
+	        $("#buyPercentStep_" + databaseID).val(playerJSON.BuyPercentStep);
+	        $("#sellPercent_" + databaseID).val(playerJSON.SellPercent);
+	        $("#counter_" + databaseID).val(playerJSON.Counter);
+	        $("#buyPrice_" + databaseID).val(playerJSON.BuyPrice);
+	        $("#sellPrice_" + databaseID).val(playerJSON.SellPrice);
+	        $("#ignorePriceCheck_" + databaseID).prop("checked", playerJSON.IgnorePriceCheck);
+	        $("#buyItem_" + databaseID).prop("checked", playerJSON.BuyItem);
+	        $("#discardItem_" + databaseID).prop("checked", playerJSON.Discard);
+	
+	        var time = timeConverter(playerJSON.LastPriceCheck);
+	        $("#lastPriceCheck_" + databaseID).html(time);
+	
+	
+	        $('#overlayEditItem').css('display', 'none');
+	    });
+	}
+	
+	function saveItem(databaseID) {
+	    $('#overlayEditItem').css('display', '');
+	
+	    var staticBuyPercent = $('#staticBuyPercent_' + databaseID).val();
+	    var variableBuyPercent = $('#variableBuyPercent_' + databaseID).val();
+	    var buyPercentStep = $('#buyPercentStep_' + databaseID).val();
+	    var sellPercent = $('#sellPercent_' + databaseID).val();
+	    var counter = $('#counter_' + databaseID).val();
+	    var buyPrice = $('#buyPrice_' + databaseID).val();
+	    var sellPrice = $('#sellPrice_' + databaseID).val();
+	    var ignorePriceCheck = $('#ignorePriceCheck_' + databaseID).prop('checked');
+	    var buyItem = $("#buyItem_" + databaseID).prop('checked');
+	    var discardItem = $("#discardItem_" + databaseID).prop('checked');
+	
+	    httpPost("/saveitem", "itemDatabaseID=" + encodeURIComponent(databaseID) + "&staticBuyPercent=" + staticBuyPercent + "&variableBuyPercent=" + variableBuyPercent + "&buyPercentStep=" + buyPercentStep + "&sellPercent=" + sellPercent + "&counter=" + counter + "&buyPrice=" + buyPrice + "&sellPrice=" + sellPrice + "&ignorePriceCheck=" + ignorePriceCheck + "&buyItem=" + buyItem + "&discardItem=" + discardItem, function (req) {
+	        var playerJSON = jQuery.parseJSON(req.responseText);
+	
+	        $("#staticBuyPercent_" + databaseID).val(playerJSON.StaticBuyPercent);
+	        $("#variableBuyPercent_" + databaseID).val(playerJSON.VariableBuyPercent);
+	        $("#buyPercentStep_" + databaseID).val(playerJSON.BuyPercentStep);
+	        $("#sellPercent_" + databaseID).val(playerJSON.SellPercent);
+	        $("#counter_" + databaseID).val(playerJSON.Counter);
+	        $("#buyPrice_" + databaseID).val(playerJSON.BuyPrice);
+	        $("#sellPrice_" + databaseID).val(playerJSON.SellPrice);
+	        $("#ignorePriceCheck_" + databaseID).prop("checked", playerJSON.IgnorePriceCheck);
+	        $("#buyItem_" + databaseID).prop("checked", playerJSON.BuyItem);
+	        $("#discardItem_" + databaseID).prop("checked", playerJSON.Discard);
+	
+	        var time = timeConverter(playerJSON.LastPriceCheck);
+	        $("#lastPriceCheck_" + databaseID).html(time);
+	
+	
+	
+	        $('#overlayEditItem').css('display', 'none');
+	    });
+	}
+	
+	function removeItemFromList(databaseID) {
+	    $('#overlayEditItem').css('display', '');
+	    httpPost("/removeitemfromlist", "item=" + encodeURIComponent(databaseID), function (req) {
+	        location.reload();
+	    });
+	}
+	
+	function timeConverter(UNIX_timestamp) {
+	    var a = new Date(UNIX_timestamp);
+	    a.setTime(a.getTime() + a.getTimezoneOffset() * 60 * 1000);
+	    var months = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
+	    var year = a.getFullYear();
+	    var month = months[a.getMonth()];
+	    var date = a.getDate();
+	    if (date.toString().length == 1) {
+	        date = "0" + date.toString();
+	    }
+	    var hour = a.getHours();
+	    if (hour.toString().length == 1) {
+	        hour = "0" + hour.toString();
+	    }
+	    var min = a.getMinutes();
+	    if (min.toString().length == 1) {
+	        min = "0" + min.toString();
+	    }
+	    var sec = a.getSeconds();
+	    if (sec.toString().length == 1) {
+	        sec = "0" + sec.toString();
+	    }
+	    var time = date + '.' + month + '.' + year + ' ' + hour + ':' + min;
+	    return time;
+	}
+	
+	$("#itemsSelect").change(function () {
+	    var all = this.value.split('|');
+	    $("#addAssetID").val(all[0]);
+	    $("#revID").val(all[1]);
+	    $("#itemType").val(all[2]);
+	});
+	
+	function searchForItems(ele) {
+	    if (event.keyCode == 13) {
+	        $("#overlaySearchItem").css("display", "");
+	        var playerName = ele.value;
+	
+	        httpPost("/searchforitem", "item=" + encodeURIComponent(ele.value), function (req) {
+	            var playersJSON = jQuery.parseJSON(req.responseText);
+	            if (playersJSON.length > 0) {
+	                document.getElementById("addItemButton").disabled = false;
+	            }
+	            else {
+	                document.getElementById("addItemButton").disabled = true;
+	            }
+	
+	            $('#itemsSelect').find('option').remove();
+	
+	            $("#overlaySearchItem").css("display", "none");
+	            $.each(playersJSON, function (id, obj) {
+	                selectAppender($('#itemsSelect'), obj.AssetID + "|" + obj.RevisionID + "|" + obj.Type, obj.Name + ' (' + obj.Rating + ')');
+	            });
+	
+	            $("#itemsSelect").trigger("change");
+	        });
+	    }
+	}
+	
+	function selectAppender(obj, value, text) {
+	    obj.append($('<option></option>').val(value).html(text));
+	}
+	
+	function httpPost(url, postdata, callback, async) {
+	    function getXMLHttpRequest() {
+	        if (window.XMLHttpRequest) {
+	            return new window.XMLHttpRequest;
+	        } else {
+	            try {
+	                return new ActiveXObject("MSXML2.XMLHTTP");
+	            }
+	            catch (ex) {
+	                return null;
+	            }
+	        }
+	    }
+	
+	    function handler() {
+	        if (oReq.readyState == 4 /* complete */) {
+	            callback(oReq);
+	        }
+	    }
+	
+	    var oReq = getXMLHttpRequest();
+	
+	    if (oReq != null) {
+	        oReq.open("POST", url, (typeof async === "undefined") ? true : async);
+	        oReq.onreadystatechange = handler;
+	        oReq.send(postdata);
+	    } else {
+	        window.alert("AJAX (XMLHTTP) not supported.");
+	    }
+	
+	}
+</script>
+@EndSection

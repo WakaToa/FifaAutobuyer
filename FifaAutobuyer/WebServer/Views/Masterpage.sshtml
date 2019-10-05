@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>FIFA18 - @Model.Platform</title>
+		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+		<link rel="stylesheet" href="@Context.Request.Url.SiteBase/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+		<link rel="stylesheet" href="@Context.Request.Url.SiteBase/dist/css/AdminLTE.min.css">
+		<link rel="stylesheet" href="@Context.Request.Url.SiteBase/dist/css/skins/skin-blue.min.css">
+		<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+		<script src="@Context.Request.Url.SiteBase/plugins/sorttable.js"></script>
+		<script src="@Context.Request.Url.SiteBase/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+		<script src="@Context.Request.Url.SiteBase/bootstrap/js/bootstrap.min.js"></script>
+		<script src="@Context.Request.Url.SiteBase/dist/js/app.min.js"></script>
+		<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+		<script src="@Context.Request.Url.SiteBase/plugins/fastclick/fastclick.js"></script>
+		<script src="@Context.Request.Url.SiteBase/dist/js/demo.js"></script>
+	</head>
+	<body class="hold-transition skin-blue sidebar-mini">
+		<div class="wrapper">
+		<header class="main-header">
+			<div class="logo">
+				<span class="logo-mini"><b>F</b>18</span>
+				<span class="logo-lg"><b>FIFA</b>18</span>
+			</div>
+			<nav class="navbar navbar-static-top" role="navigation">
+				<a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button"></a>
+				<div class="navbar-custom-menu">
+					<ul class="nav navbar-nav"></ul>
+				</div>
+			</nav>
+		</header>
+		<aside class="main-sidebar">
+			<section class="sidebar">
+				<ul class="sidebar-menu">
+					<li class="@Model.HomeActive"><a href="/"><i class="fa fa-link"></i><span>Home - @Model.Platform<span></a></li>
+					<li class="@Model.NotificationCenterActive">
+						<a href="/notificationcenter"><i class="fa fa-link"></i><span>Notification Center</span>
+						@If.DisplayNotificationCenterCount
+						<span class="label label-primary pull-right">@Model.NotificationCenterCount</span>
+						@EndIf
+						</a>
+					</li>
+					<li class="header">SETTINGS</li>
+					<li class="@Model.AccountManagerActive"><a href="accountmanager"><i class="fa fa-link"></i><span>Account Manager</span></a></li>
+					<li class="@Model.ProxyManagerActive"><a href="proxymanager"><i class="fa fa-link"></i><span>Proxy Manager</span></a></li>
+					<li class="@Model.BotManagerActive"><a href="botmanager"><i class="fa fa-link"></i><span>Bot Manager</span></a></li>
+					<li class="@Model.GeneralSettingsActive"><a href="generalsettings"><i class="fa fa-link"></i><span>General Settings</span></a></li>
+					<li class="@Model.ManageListActive"><a href="managelist"><i class="fa fa-link"></i><span>Manage List</span></a></li>
+					<li class="@Model.ActionSchedulerActive"><a href="actionscheduler"><i class="fa fa-link"></i><span>Action Scheduler</span></a></li>
+					<li class="header">LOGS</li>
+					<li class="treeview @Model.TreeviewBINActive">
+						<a href="#"><i class="fa fa-link"></i><span>BIN Logs</span> <i class="fa fa-angle-left pull-right"></i></a>
+						<ul class="treeview-menu">
+							<li class="@Model.ProfitLogsBINActive"><a href="profitlogs?type=BIN"><i class="fa fa-circle-o"></i>Profit Logs</a></li>
+							<li class="@Model.BuysLogsBINActive"><a href="buys?type=BIN"><i class="fa fa-circle-o"></i>Buys</a></li>
+							<li class="@Model.SellsLogsBINActive"><a href="sells?type=BIN"><i class="fa fa-circle-o"></i>Sells</a></li>
+						</ul>
+					</li>
+					<li class="treeview @Model.TreeviewBIDActive">
+						<a href="#"><i class="fa fa-link"></i><span>BID Logs</span> <i class="fa fa-angle-left pull-right"></i></a>
+						<ul class="treeview-menu">
+							<li class="@Model.ProfitLogsBIDActive"><a href="profitlogs?type=BID"><i class="fa fa-circle-o"></i>Profit Logs</a></li>
+							<li class="@Model.BuysLogsBIDActive"><a href="buys?type=BID"><i class="fa fa-circle-o"></i>Buys</a></li>
+							<li class="@Model.SellsLogsBIDActive"><a href="sells?type=BID"><i class="fa fa-circle-o"></i>Sells</a></li>
+						</ul>
+					</li>
+					<li class="treeview @Model.TreeviewCMBActive">
+						<a href="#"><i class="fa fa-link"></i><span>Combined Logs</span> <i class="fa fa-angle-left pull-right"></i></a>
+						<ul class="treeview-menu">
+							<li class="@Model.ProfitLogsCMBActive"><a href="profitlogs?type=CMB"><i class="fa fa-circle-o"></i>Profit Logs</a></li>
+							<li class="@Model.BuysLogsCMBActive"><a href="buys?type=CMB"><i class="fa fa-circle-o"></i>Buys</a></li>
+							<li class="@Model.SellsLogsCMBActive"><a href="sells?type=CMB"><i class="fa fa-circle-o"></i>Sells</a></li>
+						</ul>
+					</li>
+					<li class="@Model.BotLogsActive"><a href="botlogs"><i class="fa fa-link"></i> <span>Bot Logs</span></a></li>
+					<li class="@Model.ExceptionLogsActive"><a href="exceptionlogs"><i class="fa fa-link"></i> <span>Exception Logs</span></a></li>
+					<li class="header">STATISTICS</li>
+					<li class="@Model.ItemStatisticActive"><a href="itemstatistic"><i class="fa fa-link"></i><span>Item Statistic</span></a></li>
+					<li class="@Model.AccountStatisticActive"><a href="accountstatistic"><i class="fa fa-link"></i><span>Account Statistic</span></a></li>
+					<li class="@Model.BotStatisticActive"><a href="botstatistic"><i class="fa fa-link"></i><span>Bot Statistic</span></a></li>
+					<li class="header">MULING</li>
+					<li class="@Model.MuleManagerActive"><a href="mulemanager"><i class="fa fa-link"></i><span>Mule Manager</span></a></li>
+					<li class="@Model.MuleApiManagerActive"><a href="muleapimanager"><i class="fa fa-link"></i><span>Mule Api Manager</span></a></li>
+				</ul>
+			</section>
+		</aside>
+		@Section['Content']
+		<script>
+			@Model.JavaScript
+		</script>
+	</body>
+</html>

@@ -1,0 +1,114 @@
+﻿@Master['MasterPage']
+@Section['Content']
+<div class="content-wrapper">
+	<section class="content-header">
+		<h1>Account Statistic</h1>
+	</section>
+	<section class="content">
+		<div class="row">
+			<section class="col-md-12">
+				<div class="box box-info col-sm-1">
+					<div class="box-body table-responsive">
+						<table id="accountStatistic" class="table table-bordered table-striped sortable">
+							<thead>
+								<tr>
+									<th width="10%">EMail</th>
+									<th width="5%">Coins</th>
+									<th width="5%">TP Coins</th>
+									<th width="6%">Profit 24h</th>
+									<th width="6%">Muled Today</th>
+									<th width="8%">Last Action</th>
+									<th>Last Action Data</th>
+									<th width="6%">LoggedIn</th>
+									<th width="5%">Logins</th>
+									<th width="5%">Tradepile</th>
+									<th width="5%">Running</th>
+									<th width="5%">Muling</th>
+									<th width="5%">Start</th>
+								</tr>
+							</thead>
+							<tbody>
+								@Each.FUTClients
+								<tr>
+									<td><a target="_blank" href="/botlogs?email=@Current.First.FUTAccount.EMail">@Current.First.FUTAccount.EMail</a></td>
+									<td>@Current.First.Coins</td>
+									<td>@Current.First.TradepileCoins</td>
+									<td>@Current.Second</td>
+									<td>@Current.First.CoinsMuledToday</td>
+									<td>@Current.First.FUTAccountStatistic.LastActionTimeString</td>
+									<td>@Current.First.FUTAccountStatistic.LastActionData</td>
+									<td>@Current.First.LoggedIn</td>
+									<td>@Current.First.FUTAccountStatistic.TotalLogins</td>
+									<td>@Current.First.FUTAccountStatistic.TradepileCount</td>
+									<td>@Current.First.LogicRunningReal</td>
+									<td>@Current.First.Muling</td>
+									<td>
+										@IfNot.First.LogicRunningReal
+										<button class="btn btn-block btn-success btn-xs" onclick="startAccount('@Current.First.FUTAccount.EMail');">Start</button>
+										@EndIf
+										@If.First.LogicRunningReal
+										<button class="btn btn-block btn-danger btn-xs" onclick="stopAccount('@Current.First.FUTAccount.EMail');">Stop</button>
+										@EndIf
+									</td>
+								</tr>
+								@EndEach
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</section>
+		</div>
+	</section>
+</div>
+<script>
+	function startAccount(email) {
+	    httpPost("/startaccount", "account=" + encodeURIComponent(email), function (req) {
+	        var result = req.responseText;
+	        if (result === "true") {
+	            location.reload();
+	        }
+	    });
+	}
+	
+	function stopAccount(email) {
+	    httpPost("/stopaccount", "account=" + encodeURIComponent(email), function (req) {
+	        var result = req.responseText;
+	        if (result === "true") {
+	            location.reload();
+	        }
+	    });
+	}
+	
+	function httpPost(url, postdata, callback, async) {
+	    function getXMLHttpRequest() {
+	        if (window.XMLHttpRequest) {
+	            return new window.XMLHttpRequest;
+	        } else {
+	            try {
+	                return new ActiveXObject("MSXML2.XMLHTTP");
+	            }
+	            catch (ex) {
+	                return null;
+	            }
+	        }
+	    }
+	
+	    function handler() {
+	        if (oReq.readyState === 4 /* complete */) {
+	            callback(oReq);
+	        }
+	    }
+	
+	    var oReq = getXMLHttpRequest();
+	
+	    if (oReq != null) {
+	        oReq.open("POST", url, (typeof async === "undefined") ? true : async);
+	        oReq.onreadystatechange = handler;
+	        oReq.send(postdata);
+	    } else {
+	        window.alert("AJAX (XMLHTTP) not supported.");
+	    }
+	
+	}
+</script>
+@EndSection

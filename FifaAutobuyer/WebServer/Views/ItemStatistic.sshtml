@@ -1,0 +1,56 @@
+﻿@Master['MasterPage']
+@Section['Content']
+<div class="content-wrapper">
+	<section class="content-header">
+		<h1>Item Statistic</h1>
+	</section>
+	<section class="content">
+		<div class="row">
+			<section class="col-md-12">
+				<div class="box box-info col-sm-1">
+					<div class="box-body table-responsive">
+						<table id="itemStatistic" class="table table-bordered table-striped sortable">
+							<thead>
+								<tr>
+									<th width="12%">Item</th>
+									<th width="6%">Total Profit</th>
+									<th width="6%">RPM Profit</th>
+									<th width="6%">Searched</th>
+									<th width="8%">Tradepile Value</th>
+									<th width="9%">Average Buyprice</th>
+									<th width="9%">Average Sellprice</th>
+									<th width="8%">Average Profit</th>
+									<th width="6%">Total Buys</th>
+									<th width="6%">Total Sells</th>
+									<th width="6%">Items Left</th>
+									<th width="8%">Total Buyvalue</th>
+									<th width="9%">Total Sellvalue</th>
+								</tr>
+							</thead>
+							<tbody>
+								@Each.ItemStatistic
+								<tr>
+									<td><a target="_blank" href="/profitlogs?assetid=@Current.AssetID&revid=@Current.RevisionID">@Current.Name</td>
+									<td>@Current.TotalProfit</td>
+									<td>@Current.RPMProfit</td>
+									<td>@Current.TotalSearched</td>
+									<td>@Current.TradepileValue</td>
+									<td>@Current.AverageBuyprice</td>
+									<td>@Current.AverageSellprice</td>
+									<td>@Current.AverageProfit</td>
+									<td>@Current.TotalBuys</td>
+									<td>@Current.TotalSells</td>
+									<td>@Current.ItemsLeftOnTradepile</td>
+									<td>@Current.TotalBuyValue</td>
+									<td>@Current.TotalSellValue</td>
+								</tr>
+								@EndEach
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</section>
+		</div>
+	</section>
+</div>
+@EndSection

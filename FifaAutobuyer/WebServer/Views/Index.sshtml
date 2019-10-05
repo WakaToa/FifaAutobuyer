@@ -1,0 +1,62 @@
+﻿@Master['MasterPage']
+@Section['Content']
+<div class="content-wrapper">
+	<section class="content-header">
+		<h1>Home</h1>
+	</section>
+	<section class="content">
+		<div class="alert alert-danger alert-dismissible" id="errorBox" style="@Model.DisplayErrorStyle">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+			<h4><i class="icon fa fa-ban"></i> Error!</h4>
+			@Model.ErrorMessage
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="box box-default">
+					<div class="box-header with-border">
+						<h3 class="box-title">Coins and Accounts</h3>
+					</div>
+					<div class="box-body">
+						<div class="callout">
+							<h4>Total Coins: @Model.TotalCoins</h4>
+						</div>
+						<div class="callout">
+							<h4>Total Accounts: @Model.TotalAccounts</h4>
+						</div>
+						<div class="callout">
+							<h4>Average Coins per Account: @Model.AvgCoinsPerAccount</h4>
+						</div>
+						<div class="callout">
+							<h4>Total Tradepile Items: @Model.TotalTradepileItems</h4>
+						</div>
+						<div class="callout">
+							<h4>Total Tradepile Value: @Model.TotalTradepileValue</h4>
+						</div>
+						<div class="callout">
+							<h4>Total Overall Value: @Model.TotalOverallValue</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="box box-default">
+					<div class="box-header with-border">
+						<h3 class="box-title">Logs</h3>
+					</div>
+					<div class="box-body">
+						<div class="callout">
+							<h4>Total Logs: @Model.TotalLogs</h4>
+						</div>
+						<div class="callout">
+							<h4>Buys: @Model.TotalBuys</h4>
+						</div>
+						<div class="callout">
+							<h4>Sells: @Model.TotalSells</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+@EndSection

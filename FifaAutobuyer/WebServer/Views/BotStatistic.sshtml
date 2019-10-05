@@ -1,0 +1,39 @@
+﻿@Master['MasterPage']
+@Section['Content']
+<div class="content-wrapper">
+	<section class="content-header">
+		<h1>Bot Statistic</h1>
+	</section>
+	<section class="content">
+		<div class="row">
+			<section class="col-md-12">
+				<div class="box box-primary">
+					<div class="box-header with-border">
+						<h3 class="box-title">Coin/Profit Log | Last 24 Hours: @Model.TotalProfit</h3>
+						<div class="box-tools pull-right">
+							<button type="button" class="btn btn-box-tool" data-widget="collapse">
+							<i class="fa fa-minus"></i>
+							</button>
+							<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+						</div>
+					</div>
+					<div class="box-body chart-responsive">
+						<div class="chart" id="area-chart" style="height:50vh"></div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</section>
+</div>
+<script>
+	var area = new Morris.Area({
+	    element: 'area-chart', resize: true,
+	    data: [
+	        @Each.BotStatistic
+	            @Current.BuildedStatisticString
+	        @EndEach
+	    ],
+	    parseTime: false, behaveLikeLine: true, xkey: 'y', ykeys: ['item1', 'item2', 'item3'], labels: ['Overall Value', 'Total Coins', 'TP Value'], lineColors: ['#1B4F72', '#2874A6', '#3498DB'], hideHover: 'auto', ymin: 0
+	});
+</script>
+@EndSection

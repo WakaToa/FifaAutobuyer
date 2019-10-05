@@ -1,0 +1,171 @@
+﻿@Master['MasterPage']
+@Section['Content']
+<div class="content-wrapper" style="min-height:1500px">
+	<section class="content-header">
+		<h1>General Settings</h1>
+	</section>
+	<section class="content">
+		<div class="row">
+			<section class="col-md-12">
+				<div class="box box-info col-sm-1">
+					<div class="box-header with-border">
+						<h3 class="box-title">Autobuyer Settings</h3>
+					</div>
+					<form class="form-horizontal" method="post">
+						<div class="box-body">
+							<div class="row" style="margin-top:20px;">
+								<label for="rpmMin" class="col-sm-3 control-label">Minimum RPM</label>
+								<div class="col-xs-2">
+									<input min="1" type="number" class="form-control" name="rpmMin" value="@Model.RoundsPerMinuteMin">
+								</div>
+								<label for="rpmMax" class="col-sm-3 control-label">Maximum RPM</label>							
+								<div class="col-xs-2">
+									<input min="1" type="number" class="form-control" name="rpmMax" value="@Model.RoundsPerMinuteMax">
+								</div>
+							</div>
+							<div class="row" style="margin-top:20px;">
+								<label for="rpmMinSearch" class="col-sm-3 control-label">Minimum RPM Search</label>
+								<div class="col-xs-2">
+									<input min="1" type="number" class="form-control" name="rpmMinSearch" value="@Model.RoundsPerMinuteMinSearch">
+								</div>
+								<label for="rpmMaxSearch" class="col-sm-3 control-label">Maximum RPM Search</label>							
+								<div class="col-xs-2">
+									<input min="1" type="number" class="form-control" name="rpmMaxSearch" value="@Model.RoundsPerMinuteMaxSearch">
+								</div>
+							</div>
+							<div class="row" style="margin-top:20px;">
+								<label for="pauseRelogs" class="col-sm-3 control-label">Pause between Relogs in Seconds</label>
+								<div class="col-xs-2">
+									<input min="0" type="number" class="form-control" name="pauseRelogs" value="@Model.PauseBetweenRelogs">
+								</div>
+								<!--<label for="useBidSwitch" class="col-sm-2 control-label"></label>
+								<div class="checkbox col-xs-5">
+									<input type="checkbox" id="useBidSwitch" name="useBidSwitch" @Model.UseBidSwitchChecked><b> Use BidSwitch </b></input>
+								</div>--!>
+							</div>
+							<div class="row" style="margin-top:20px;">
+								<label for="tradepileCheckTimes" class="col-sm-3 control-label">Check Tradepile every xx Seconds</label>
+								<div class="col-xs-2">
+									<input min="1" type="number" class="form-control" name="tradepileCheckTimes" value="@Model.TradepileCheck">
+								</div>
+								<label for="" class="col-sm-2 control-label"></label>
+								<div class="checkbox col-xs-5">
+									<input type="checkbox" id="enableBuy" name="enableBuy" @Model.EnableBuyChecked><b> Enable Buy</b></input>
+								</div>
+							</div>
+							<div class="row" style="margin-top:20px;">
+								<label for="pricecheckTime" class="col-sm-3 control-label">Pricecheck Items every xx Minutes</label>
+								<div class="col-xs-2">
+									<input min="1" type="number" class="form-control" name="pricecheckTime" value="@Model.PriceCheckTimes">
+								</div>
+								<label for="" class="col-sm-2 control-label"></label>
+								<div class="checkbox col-xs-5">
+									<input type="checkbox" id="enableSell" name="enableSell" @Model.EnableSellChecked><b> Enable Sell</b></input>
+								</div>
+							</div>
+							<div class="row" style="margin-top:20px;">
+								<label for="useLastPriceChecks" class="col-sm-3 control-label">Use X last PriceChecks for calculating Average Price</label>
+								<div class="col-xs-2">
+									<input min="0" type="number" class="form-control" name="useLastPriceChecks" value="@Model.UseLastPriceChecks">
+								</div>
+								<label for="" class="col-sm-3 control-label">Current Loginmethod</label>
+								<div class="col-xs-2">
+									@If.LoginMethodWebEnabled
+									<select class="form-control" name="currentLoginMethod">
+										<option value="web" selected>Web</option>
+										<option value="ios">IOS</option>
+										<option value="and">Android</option>
+									</select>
+									@EndIf
+									@If.LoginMethodIOSEnabled
+									<select class="form-control" name="currentLoginMethod">
+										<option value="web">Web</option>
+										<option value="ios" selected>IOS</option>
+										<option value="and">Android</option>
+									</select>
+									@EndIf
+									@If.LoginMethodAndroidEnabled
+									<select class="form-control" name="currentLoginMethod">
+										<option value="web">Web</option>
+										<option value="ios">IOS</option>
+										<option value="and" selected>Android</option>
+									</select>
+									@EndIf
+								</div>
+							</div>
+							<div class="row" style="margin-top:20px">
+								<label for="counterBase"  class="col-sm-3 control-label">PriceCalculation Counter</label>
+								<div class="col-xs-2">
+									<input min="1" type="number" class="form-control" name="counterBase" value="@Model.Counter">
+								</div>
+								<label for="" class="col-sm-2 control-label"></label>
+								<div class="checkbox col-xs-5">
+									<input type="checkbox" id="oneParallelLogin" name="oneParallelLogin" @Model.OneParallelLoginChecked><b> One Parallel Login </b></input>
+								</div>
+							</div>
+							<div class="row" style="margin-top:20px">
+								<label for="priceCorrectionPercentage"  class="col-sm-3 control-label">Pricecorrection percentage</label>							
+								<div class="col-xs-2">
+									<input min="0" type="number" class="form-control" name="priceCorrectionPercentage" value="@Model.PriceCorrectionPercentage">
+								</div>
+								<label for="" class="col-sm-2 control-label"></label>
+								<div class="checkbox col-xs-5">
+									<input type="checkbox" id="discardEverything" name="discardEverything" @Model.DiscardEverythingChecked><b> Discard Everything </b></input>
+								</div>
+							</div>
+							<div class="row" style="margin-top:20px;">
+								<label for="watchlistCheckTimes" class="col-sm-3 control-label">Check Watchlist every xx Seconds</label>
+								<div class="col-xs-2">
+									<input min="1" type="number" class="form-control" name="watchlistCheckTimes" value="@Model.WatchlistCheck">
+								</div>
+								<label for="" class="col-sm-2 control-label"></label>
+								<div class="checkbox col-xs-5">
+									<input type="checkbox" id="relistWithOldPrice" name="relistWithOldPrice" @Model.RelistWithOldPriceChecked><b> Relist Item with old price if no Item on the List is found</b></input>
+								</div>
+							</div>
+							<div class="row" style="margin-top:20px;">
+								<label for="expiredTimer" class="col-sm-3 control-label">Bid on Items which expired in xx Seconds</label>
+								<div class="col-xs-2">
+									<input min="1" type="number" class="form-control" name="expiredTimer" value="@Model.ExpiredTimer">
+								</div>
+								<label for="maxCardsPerDay" class="col-sm-3 control-label">Buy max xx Cards per Day</label>
+								<div class="col-xs-2">
+									<input min="0" type="number" class="form-control" name="maxCardsPerDay" value="@Model.MaxCardsPerDay">
+								</div>
+							</div>
+							<div class="row" style="margin-top:20px;">
+								<label for="waitAfterBuy" class="col-sm-3 control-label">Wait xx Seconds after trying to buy an Item</label>
+								<div class="col-xs-2">
+									<input min="0" type="number" class="form-control" name="waitAfterBuy" value="@Model.WaitAfterBuy">
+								</div>
+								<label for="" class="col-sm-2 control-label"></label>
+								<div class="checkbox col-xs-5">
+									<input type="checkbox" id="useRandomRequests" name="useRandomRequests" @Model.UseRandomRequestsChecked><b> Use Random Requests </b></input>
+								</div>
+							</div>
+							<div class="row" style="margin-top:20px;">
+								<label for="minimumPlayersForPriceCheck" class="col-sm-3 control-label">Minimum Players for PriceCheck</label>
+								<div class="col-xs-2">
+									<input min="0" type="number" class="form-control" name="minimumPlayersForPriceCheck" value="@Model.MinimumPlayersForPriceCheck">
+								</div>
+							</div>
+						</div>
+						<div class="box-footer">
+							<button type="submit" class="btn btn-info pull-right" onclick="enableOverlay();">Save</button>
+						</div>
+					</form>
+					<div class="overlay" id="overlay" style="display:none">
+						<i class="fa fa-refresh fa-spin"></i>
+					</div>
+				</div>
+			</section>
+		</div>
+	</section>
+</div>
+<script>	
+	function enableOverlay()
+	{
+		$("#overlay").css("display", "");
+	}
+</script>
+@EndSection

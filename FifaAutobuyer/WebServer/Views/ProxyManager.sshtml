@@ -1,0 +1,191 @@
+﻿@Master['MasterPage']
+@Section['Content']
+<div class="content-wrapper">
+	<section class="content-header">
+		<h1>Proxy Manager</h1>
+	</section>
+	<section class="content">
+		<div class="row">
+			<section class="col-md-12">
+				<div class="box box-info col-sm-1">
+					<div class="box-body table-responsive">
+						<form role="form" action="/proxymanager" method="post">
+							<div class="box-body">
+								<div class="form-group">
+									<label>
+									Format:</br>
+									Host:Port:Username:Password</br>
+									</label>
+									<textarea class="form-control" rows="6" name="proxies" id="proxies" autocomplete="off" placeholder="Enter ..."></textarea>
+								</div>
+							</div>
+							<div class="box-footer">
+								<button type="submit" class="btn btn-primary">Add proxies</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</section>
+			<section class="col-md-12">
+				<div class="box box-info col-sm-1">
+					<div class="box-body table-responsive">
+						<table id="proxyManager" class="table table-bordered table-hover">
+							<thead>
+								<tr>
+									<th width="5%">Delete</th>
+									<th>Host</th>
+									<th width="15%">Port</th>
+									<th width="15%">Username</th>
+									<th width="15%">Password</th>
+									<th width="10%">Delete</th>
+								</tr>
+							</thead>
+							<tbody>
+								@Each.Proxies
+								<tr id="@Current.ID">
+									<td><input type="checkbox"></td>
+									<td>@Current.Host</td>
+									<td>@Current.Port</td>
+									<td>@Current.Username</td>
+									<td>@Current.Password</td>
+									<td><button class="btn btn-block btn-primary btn-xs" onclick="deleteProxy('@Current.ID');">Delete</button></td>
+								</tr>
+								@EndEach
+							</tbody>
+						</table>
+					</div>
+					<div class="box-footer">
+						<button type="button" class="btn btn-block btn-primary" onclick="window.location.href='/export/proxies';">Export proxies</button>
+						<h3 style="text-align: center;"><font color="red">!!!!ONLY PERFORM ACTIONS WHILE BOT IS NOT RUNNING!!!!</font></h3>
+						<button type="button" class="btn btn-block btn-primary" onclick="deleteProxies();">Delete all selected proxies</button>
+						<button type="button" class="btn btn-block btn-primary" onclick="deleteAllProxies();">Delete all proxies</button>
+						<button type="button" class="btn btn-block btn-primary" onclick="allocateProxies('allocate');">Allocate proxies</button>
+						<button type="button" class="btn btn-block btn-primary" onclick="allocateProxies('deallocate');">Deallocate proxies</button>
+					</div>
+				</div>
+			</section>
+		</div>
+	</section>
+</div>
+<script>
+	function deleteProxies()
+	{
+		var allids = "";
+		var table = document.getElementById("proxyManager");
+		for (var i = 0, row; row = table.rows[i]; i++) {
+			if(row.id == "")
+			{
+				continue;
+			}
+			var checked = row.cells[0].childNodes[0].checked;
+			if(checked)
+			{
+				allids += row.id + ",";
+			}
+		}
+		if(allids.endsWith(","))
+		{
+			allids = allids.substring(0, allids.length - 1);
+		}
+		if(allids == "")
+		{
+			return;
+		}
+			
+		httpPost("/deleteproxyarray", "proxy="+encodeURIComponent(allids), function(req)
+		{
+			var result = req.responseText;
+			if (result == "true") {
+				location.reload();
+			}
+		});	
+	}
+	function deleteAllProxies()
+	{
+		var allids = "";
+		var table = document.getElementById("proxyManager");
+		for (var i = 0, row; row = table.rows[i]; i++) {
+			if(row.id == "")
+			{
+				continue;
+			}
+			allids += row.id + ",";
+		}
+		if(allids.endsWith(","))
+		{
+			allids = allids.substring(0, allids.length - 1);
+		}
+		if(allids == "")
+		{
+			return;
+		}
+		
+		httpPost("/deleteproxyarray", "proxy="+encodeURIComponent(allids), function(req)
+		{
+			var result = req.responseText;
+			if (result == "true") {
+				location.reload();
+			}
+		});	
+	}
+	function deleteProxy(id)
+	{
+		httpPost("/deleteproxy", "proxy="+encodeURIComponent(id), function(req)
+		{
+			var result = req.responseText;
+			if (result == "true") {
+				location.reload();
+			}
+		});	
+	}
+	function allocateProxies(action)
+	{
+		httpPost("/allocateproxies", "action="+encodeURIComponent(action), function(req)
+		{
+			var result = req.responseText;
+			if (result == "true") {
+				location.reload();
+			}
+		});	
+	}
+	function httpPost(url, postdata, callback, async)
+	{
+		function getXMLHttpRequest() 
+		{
+			if (window.XMLHttpRequest) {
+				return new window.XMLHttpRequest;
+			} else 
+			{
+				try 
+				{
+					return new ActiveXObject("MSXML2.XMLHTTP");
+				} 
+				catch (ex)
+				{
+					return null;
+				}
+			}
+		}
+	
+		function handler() 
+		{
+			if (oReq.readyState == 4 /* complete */ ) 
+			{
+				callback(oReq);
+			}
+		}
+	
+		var oReq = getXMLHttpRequest();
+	
+		if (oReq != null) 
+		{
+			oReq.open("POST", url, (typeof async === "undefined") ? true : async);
+			oReq.onreadystatechange = handler;
+			oReq.send(postdata);
+		} else 
+		{
+			window.alert("AJAX (XMLHTTP) not supported.");
+		}
+	}
+</script>
+@EndSection

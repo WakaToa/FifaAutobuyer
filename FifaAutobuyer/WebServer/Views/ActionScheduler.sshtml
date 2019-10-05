@@ -1,0 +1,156 @@
+﻿@Master['MasterPage']
+@Section['Content']
+<div class="content-wrapper">
+	<section class="content-header">
+		<h1>Action Scheduler</h1>
+	</section>
+	<section class="content">
+		<div class="row">
+			<section class="col-md-12">
+				<div class="box box-info col-sm-1">
+					<div class="box-body table-responsive">
+						<table id="actionScheduler" class="table table-bordered table-hover sortable">
+							<thead>
+								<tr>
+									<th width="20%">Type</th>
+									<th width="20%">Time</th>
+									<th width="20%">Next Exection</th>
+									<th width="20%">Delete</th>
+								</tr>
+							</thead>
+							<tbody>
+								@Each.ActionScheduler
+								<tr id="@Current.ID">
+									<td>@Current.Description</td>
+									<td>@Current.Time</td>
+									<td>@Current.NextExecution</td>
+									<td><button class="btn btn-block btn-primary btn-xs" onclick="deleteAction('@Current.ID');">Delete</button></td>
+								</tr>
+								@EndEach
+							</tbody>
+						</table>
+					</div>
+					<div class="box-footer">
+							<div class="row">
+								<div class="col-xs-3">
+								<form role="form" action="/actionscheduler" method="post">
+									<select class="form-control" name="type" onchange="change(this)">
+										<option value="1" selected="">SwitchToWebEmulation</option>
+										<option value="2">SwitchToIOSEmulation</option>
+										<option value="3">SwitchToAndroidEmulation</option>
+										<option value="4">StartLogic</option>
+										<option value="5">StopLogic</option>
+										<option value="6">EnableBuy</option>
+										<option value="7">DisableBuy</option>
+										<option value="8">EnableSell</option>
+										<option value="9">DisableSell</option>
+										<option value="10">SetBuyPercent</option>
+										<option value="11">SetSellPercent</option>
+										<option value="12">ResetPricechecks</option>
+									</select>
+								</div>
+								<div class="col-xs-2">
+									<input type="time" class="form-control" placeholder="Time" name="time" id="time">
+								</div>
+								<div class="col-xs-2">
+									<input type="number" value="0" style="display:none" class="form-control" placeholder="Percent" name="percent" id="percent">
+								</div>
+								<div class="col-xs-2">
+									<button type="submit" class="btn btn-primary">Add action</button>
+								</div>
+								</form>
+								<div class="col-xs-2">
+									<button type="submit" onclick="window.location.href='/export/actionscheduler';" class="btn btn-primary">Export</button>
+								</div>
+							</div>
+					</div>
+				</div>
+			</section>
+			<section class="col-md-12">
+				<div class="box box-info col-sm-1">
+					<div class="box-body table-responsive">
+						<div class="box header with-border">
+							<h3 class="box-title">Import Actionscheduler</h3>
+						</div>
+						<form role="form" action="/actionscheduler" method="post">
+							<input type="hidden" name="action" value="import">
+							<div class="box-body">
+								<div class="form-group">
+									<textarea autocomplete="off" class="form-control" rows="3" name="actions" id="actions" placeholder="Enter actions..."></textarea>
+								</div>
+							</div>
+							<div class="box-footer">
+								<button type="submit" class="btn btn-primary">Import</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</section>
+		</div>
+	</section>
+</div>
+<script>
+
+	function change(obj) {
+		var selectBox = obj;
+		var selected = selectBox.options[selectBox.selectedIndex].value;
+		var textarea = document.getElementById("percent");
+
+		if(selected === '10' || selected === '11'){
+			textarea.style.display = "block";
+			textarea.value = "";
+		}
+		else{
+			textarea.style.display = "none";
+			textarea.value = "0";
+		}
+	}
+
+	function deleteAction(id)
+	{
+		httpPost("/actionscheduler", "action=delete&id="+encodeURIComponent(id), function(req)
+		{
+			window.location.reload(true); 
+		});	
+	}
+	function httpPost(url, postdata, callback, async)
+	{
+		function getXMLHttpRequest() 
+		{
+			if (window.XMLHttpRequest) {
+				return new window.XMLHttpRequest;
+			} else 
+			{
+				try 
+				{
+					return new ActiveXObject("MSXML2.XMLHTTP");
+				} 
+				catch (ex)
+				{
+					return null;
+				}
+			}
+		}
+	
+		function handler() 
+		{
+			if (oReq.readyState == 4 /* complete */ ) 
+			{
+				callback(oReq);
+			}
+		}
+	
+		var oReq = getXMLHttpRequest();
+	
+		if (oReq != null) 
+		{
+			oReq.open("POST", url, (typeof async === "undefined") ? true : async);
+			oReq.onreadystatechange = handler;
+			oReq.send(postdata);
+		} else 
+		{
+			window.alert("AJAX (XMLHTTP) not supported.");
+		}
+	}
+</script>
+@EndSection

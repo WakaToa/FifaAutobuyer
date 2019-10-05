@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Autobuyer.web</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
+
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	
+	
+  </head>
+  <body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+
+      <header class="main-header">
+        <div class="logo">
+          <span class="logo-mini"><b>AB</b>16</span>
+          <span class="logo-lg"><b>Autobuyer</b>.web</span>
+        </div>
+
+        <nav class="navbar navbar-static-top" role="navigation">
+          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+          </a>
+          <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+			   <li class="dropdown user user-menu">
+					<a href="logout" class="toggle" data-toggle="dropdown">
+						<span class="hidden-xs">Menu</span>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="user-footer">
+							<a href="logout" class="btn btn-default btn-flat">Sign out</a>
+						</li>
+					</ul>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+	  
+      <aside class="main-sidebar">
+        <section class="sidebar">
+          <ul class="sidebar-menu">
+			<li><a href="/"><i class="fa fa-link"></i> <span>Home {DATABASENAME}</span></a></li>
+			<li><a href="notificationcenter"><i class="fa fa-link"></i> <span>Notification Center</span><span class="label label-primary pull-right">{NOTIFICATIONCOUNT}</span></a></li>
+            <li class="header">SETTINGS</li>
+			<li><a href="botmanager"><i class="fa fa-link"></i> <span>Bot Manager</span></a></li>
+            <li><a href="generalsettings"><i class="fa fa-link"></i> <span>General Settings</span></a></li>
+			<li class="active"><a href="managelist"><i class="fa fa-link"></i> <span>Manage List</span></a></li>
+			<li class="treeview">
+              <a href="#"><i class="fa fa-link"></i> <span>Manage Accounts</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li><a href="addaccount"><i class="fa fa-circle-o"></i>Add Account</a></li>
+                <li><a href="editaccount"><i class="fa fa-circle-o"></i>Edit Account</a></li>
+              </ul>
+            </li>
+			<li class="header">LOGS</li>
+            <li class="treeview">
+              <a href="#"><i class="fa fa-link"></i> <span>BIN Logs</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li><a href="profitlogs?type=BIN"><i class="fa fa-circle-o"></i>Profit Logs</a></li>
+                <li><a href="buys?type=BIN"><i class="fa fa-circle-o"></i>Buys</a></li>
+				<li><a href="sells?type=BIN"><i class="fa fa-circle-o"></i>Sells</a></li>
+              </ul>
+            </li>
+			<li class="treeview">
+              <a href="#"><i class="fa fa-link"></i> <span>BID Logs</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li><a href="profitlogs?type=BID"><i class="fa fa-circle-o"></i>Profit Logs</a></li>
+                <li><a href="buys?type=BID"><i class="fa fa-circle-o"></i>Buys</a></li>
+				<li><a href="sells?type=BID"><i class="fa fa-circle-o"></i>Sells</a></li>
+              </ul>
+            </li>
+			<li class="treeview">
+              <a href="#"><i class="fa fa-link"></i> <span>Combined Logs</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li><a href="profitlogs?type=CMB"><i class="fa fa-circle-o"></i>Profit Logs</a></li>
+                <li><a href="buys?type=CMB"><i class="fa fa-circle-o"></i>Buys</a></li>
+				<li><a href="sells?type=CMB"><i class="fa fa-circle-o"></i>Sells</a></li>
+              </ul>
+            </li>
+			<li><a href="botlogs"><i class="fa fa-link"></i> <span>Bot Logs</span></a></li>
+			<li><a href="exceptionlogs"><i class="fa fa-link"></i> <span>Exception Logs</span></a></li>
+			<li><a href="itemstatistic"><i class="fa fa-link"></i> <span>Item Statistic</span></a></li>
+			<li><a href="accountstatistic"><i class="fa fa-link"></i> <span>Account Statistic</span></a>
+			<li><a href="botstatistic"><i class="fa fa-link"></i> <span>Bot Statistic</span></a></li>
+			<li><a href="mule"><i class="fa fa-link"></i> <span>Mule Manager</span></a></li>
+          </ul>
+        </section>
+      </aside>
+
+      <div class="content-wrapper">
+        <section class="content-header">
+          <h1>
+            Manage List
+          </h1>
+        </section>
+
+        <section class="content">
+		<div class="row">
+			<section class="col-md-12">
+			
+			<div class="alert alert-danger alert-dismissible" id="errorBox" style="display:none;">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-ban"></i> Error!</h4>
+                {ERRORMESSAGE}
+              </div>
+			  
+			<div class="box box-info col-sm-1">
+                <div class="box-header with-border">
+					<h3 class="box-title">Add Item to List</h3>
+					<div class="pull-right box-tools">
+						<button class="btn btn-box-tool" data-widget="collapse">
+							<i class="fa fa-minus"></i>
+						</button>
+					</div>
+                </div>
+				<div class="box-body">
+					<div class="form-group">
+						<label>Search for Item</label>
+						<input id="searchForItem" type="text" class="form-control" placeholder="Name..."  onkeydown="searchForItems(this);">
+					</div>
+				</div>
+				
+				<form class="form-horizontal select" action="/additem" method="post" style="margin-left:15px;margin-right:15px">
+					<div class="box-body">
+						<div class="form-group">
+							<label>Select Item</label>
+							<select class="form-control" id="itemsSelect" name="itemsSelect">
+							</select>
+							<label>Revision ID</label>
+							<input id="revID" min="0" type="number" class="form-control" name="revID" value="0">
+						</div>
+					</div>
+					<div class="box-footer">
+						<button type="submit" id="addItemButton" class="btn btn-info pull-right" disabled="true" onclick="$('#overlaySearchItem').css('display', '');">Add Item to List</button>
+					</div>
+					<input type="hidden" id="itemType" name="itemType" value="">
+					<input type="hidden" id="addAssetID" name="addAssetID" value="">
+                </form>
+				
+				<div class="overlay" id="overlaySearchItem" style="display:none">
+					<i class="fa fa-refresh fa-spin"></i>
+				</div>
+            </div>
+			
+			
+			
+			
+			<section>
+			<div class="box box-info col-sm-1">
+			<div class="box-header with-border">
+				<h3 class="box-title">Edit Items - Total Items: {ITEMCOUNT}</h3>
+				<div class="pull-right box-tools">
+					<button class="btn btn-box-tool" data-widget="collapse">
+						<i class="fa fa-minus"></i>
+					</button>
+				</div>
+            </div>
+                <div class="box-body">
+                  <table id="accountStatistic" class="table table-bordered table-striped sortable">
+                    <thead>
+                      <tr>
+                        <th width="15%">Item</th>
+                        <th width="6%">Static Buy %</th>
+						<th width="6%">Variable Buy %</th>
+						<th width="7%">Buy % Step</th>
+						<th width="6%">Counter</th>
+                        <th width="6%">Sell %</th>
+						<th width="6%">Buyprice</th>
+						<th width="6%">Sellprice</th>
+						<th width="5%">Ignore PC</th>
+						<th width="3%">Buy</th>
+						<th width="5%">Discard</th>
+						<th width="9%">Last Pricecheck</th>
+						<th width="8%">Reset Pricecheck</th>
+						<th width="5%">Remove</th>
+						<th width="5%">Save</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!--<tr>
+						<td style="vertical-align: middle;">Item1</td>
+						<td><input min="0" type="number" class="form-control" id="buyPercent_databaseID" name="buyPercent_databaseID" value=""></td>
+						<td><input min="0" type="number" class="form-control" id="sellPercent_databaseID" name="sellPercent_databaseID" value=""></td>
+						<td><input min="0" type="number" class="form-control" id="counter_databaseID" name="counter_databaseID" value=""></td>
+						<td><input min="0" type="number" class="form-control" id="buyPrice_databaseID" name="buyPrice_databaseID" value=""></td>
+						<td><input min="0" type="number" class="form-control" id="sellPrice_databaseID" name="sellPrice_databaseID" value=""></td>
+						<td style="vertical-align:middle"><input type="checkbox" name="ignorePriceCheck_databaseID" id="ignorePriceCheck_databaseID" checked=""></td>
+						<td id="lastPriceCheck_databaseID" name="lastPriceCheck_databaseID">08.11.2015 15:35:58</td>
+						<td><button class="btn btn-block btn-success" onclick="resetPriceCheck('databaseID');">Reset Pricecheck</button></td>
+						<td><button class="btn btn-block btn-success" onclick="removeItemFromList('databaseID');">Remove</button></td>
+						<td><button class="btn btn-block btn-success" onclick="saveItem('databaseID');">Save</button></td>
+					  </tr>-->
+					  {ITEMLIST}
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <th width="15%">Item</th>
+                        <th width="6%">Static Buy %</th>
+						<th width="6%">Variable Buy %</th>
+						<th width="7%">Buy % Step</th>
+						<th width="6%">Counter</th>
+                        <th width="6%">Sell %</th>
+						<th width="6%">Buyprice</th>
+						<th width="6%">Sellprice</th>
+						<th width="5%">Ignore PC</th>
+						<th width="3%">Buy</th>
+						<th width="5%">Discard</th>
+						<th width="9%">Last Pricecheck</th>
+						<th width="8%">Reset Pricecheck</th>
+						<th width="5%">Remove</th>
+						<th width="5%">Save</th>
+                      </tr>
+                    </tfoot>
+
+                  </table>
+                </div>
+				
+				<div class="overlay" id="overlayEditItem" style="display:none">
+					<i class="fa fa-refresh fa-spin"></i>
+				</div>
+						
+              </div>
+			</section>
+			</div>
+        </section>
+      </div>
+    </div>
+
+	<script src="plugins/sorttable.js"></script>
+	<script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="dist/js/app.min.js"></script>
+	
+	<script>
+	
+	
+		function resetPriceCheck(databaseID)
+		{
+			$('#overlayEditItem').css('display', '');
+			httpPost("/resetpricecheck", "item="+encodeURIComponent(databaseID), function(req)
+			{
+				var playerJSON = jQuery.parseJSON(req.responseText);
+				
+				$("#staticBuyPercent_" + databaseID).val(playerJSON.StaticBuyPercent);
+				$("#variableBuyPercent_" + databaseID).val(playerJSON.VariableBuyPercent);
+				$("#buyPercentStep_" + databaseID).val(playerJSON.BuyPercentStep);
+				$("#sellPercent_" + databaseID).val(playerJSON.SellPercent);
+				$("#counter_" + databaseID).val(playerJSON.Counter);		
+				$("#buyPrice_" + databaseID).val(playerJSON.BuyPrice);	
+				$("#sellPrice_" + databaseID).val(playerJSON.SellPrice);
+				$("#ignorePriceCheck_" + databaseID).prop("checked", playerJSON.IgnorePriceCheck);
+				$("#buyItem_" + databaseID).prop("checked", playerJSON.BuyItem);
+				$("#discardItem_" + databaseID).prop("checked", playerJSON.Discard);
+				
+				var time = timeConverter(playerJSON.LastPriceCheck);
+				$("#lastPriceCheck_" + databaseID).html(time);
+
+				
+				$('#overlayEditItem').css('display', 'none');
+			});
+		}
+		
+		function saveItem(databaseID)
+		{
+			$('#overlayEditItem').css('display', '');
+			
+			var staticBuyPercent = $('#staticBuyPercent_' + databaseID).val();
+			var variableBuyPercent = $('#variableBuyPercent_' + databaseID).val();
+			var buyPercentStep = $('#buyPercentStep_' + databaseID).val();
+			var sellPercent = $('#sellPercent_' + databaseID).val();
+			var counter = $('#counter_' + databaseID).val();
+			var buyPrice = $('#buyPrice_' + databaseID).val();
+			var sellPrice = $('#sellPrice_' + databaseID).val();
+			var ignorePriceCheck = $('#ignorePriceCheck_' + databaseID).prop('checked');
+			var buyItem = $("#buyItem_" + databaseID).prop('checked');
+			var discardItem = $("#discardItem_" + databaseID).prop('checked');
+			
+			httpPost("/saveitem", "itemDatabaseID="+encodeURIComponent(databaseID) + "&staticBuyPercent=" + staticBuyPercent + "&variableBuyPercent=" + variableBuyPercent + "&buyPercentStep=" + buyPercentStep + "&sellPercent=" + sellPercent + "&counter=" + counter + "&buyPrice=" + buyPrice + "&sellPrice=" + sellPrice + "&ignorePriceCheck=" + ignorePriceCheck + "&buyItem=" + buyItem + "&discardItem=" + discardItem, function(req)
+			{
+				var playerJSON = jQuery.parseJSON(req.responseText);
+				
+				$("#staticBuyPercent_" + databaseID).val(playerJSON.StaticBuyPercent);
+				$("#variableBuyPercent_" + databaseID).val(playerJSON.VariableBuyPercent);
+				$("#buyPercentStep_" + databaseID).val(playerJSON.BuyPercentStep);
+				$("#sellPercent_" + databaseID).val(playerJSON.SellPercent);
+				$("#counter_" + databaseID).val(playerJSON.Counter);		
+				$("#buyPrice_" + databaseID).val(playerJSON.BuyPrice);	
+				$("#sellPrice_" + databaseID).val(playerJSON.SellPrice);
+				$("#ignorePriceCheck_" + databaseID).prop("checked", playerJSON.IgnorePriceCheck);
+				$("#buyItem_" + databaseID).prop("checked", playerJSON.BuyItem);
+				$("#discardItem_" + databaseID).prop("checked", playerJSON.Discard);
+				
+				var time = timeConverter(playerJSON.LastPriceCheck);
+				$("#lastPriceCheck_" + databaseID).html(time);
+				
+				
+				
+				$('#overlayEditItem').css('display', 'none');
+			});
+		}
+		
+		function removeItemFromList(databaseID)
+		{
+			$('#overlayEditItem').css('display', '');
+			httpPost("/removeitemfromlist", "item="+encodeURIComponent(databaseID), function(req)
+			{
+				location.reload();
+			});
+		}
+
+		function timeConverter(UNIX_timestamp){
+			var a = new Date(UNIX_timestamp);
+			a.setTime( a.getTime() + a.getTimezoneOffset()*60*1000 );
+			var months = ['01','02','03','04','05','06','07','08','09','10','11','12'];
+			var year = a.getFullYear();
+			var month = months[a.getMonth()];
+			var date = a.getDate();
+			if(date.toString().length == 1)
+			{
+				date = "0" + date.toString();
+			}
+			var hour = a.getHours();
+			if(hour.toString().length == 1)
+			{
+				hour = "0" + hour.toString();
+			}
+			var min = a.getMinutes();
+			if(min.toString().length == 1)
+			{
+				min = "0" + min.toString();
+			}
+			var sec = a.getSeconds();
+			if(sec.toString().length == 1)
+			{
+				sec = "0" + sec.toString();
+			}
+			var time = date + '.' + month + '.' + year + ' ' + hour + ':' + min;
+			return time;
+		}
+
+		$("#itemsSelect").change(function() {
+			var all = this.value.split('|');
+			$("#addAssetID").val(all[0]);
+			$("#revID").val(all[1]);
+			$("#itemType").val(all[2]);
+		});
+
+		
+		
+		function searchForItems(ele)
+		{
+			if(event.keyCode == 13) {
+				$("#overlaySearchItem").css("display", "");
+				var playerName = ele.value;
+				
+				httpPost("/searchforitem", "item="+encodeURIComponent(ele.value), function(req)
+				{
+					var playersJSON = jQuery.parseJSON(req.responseText);
+					if(playersJSON.length > 0)
+					{
+						document.getElementById("addItemButton").disabled = false;
+					}
+					else
+					{
+						document.getElementById("addItemButton").disabled = true;
+					}
+					
+					$('#itemsSelect').find('option').remove();
+					
+					$("#overlaySearchItem").css("display", "none");
+					$.each(playersJSON, function(id, obj)
+										{
+											selectAppender($('#itemsSelect'), obj.AssetID + "|" + obj.RevisionID + "|" + obj.Type, obj.Name + ' (' + obj.Rating + ')');
+										}					
+					
+					);
+					
+					$("#itemsSelect").trigger("change");
+					
+					
+				});
+				
+				
+			}
+		}
+		
+		function selectAppender(obj, value, text){
+			obj.append($('<option></option>').val(value).html(text));
+		}
+		
+		function httpPost(url, postdata, callback, async)
+		{
+			function getXMLHttpRequest() 
+			{
+				if (window.XMLHttpRequest) {
+					return new window.XMLHttpRequest;
+				} else 
+				{
+					try 
+					{
+						return new ActiveXObject("MSXML2.XMLHTTP");
+					} 
+					catch (ex)
+					{
+						return null;
+					}
+				}
+			}
+
+			function handler() 
+			{
+				if (oReq.readyState == 4 /* complete */ ) 
+				{
+					callback(oReq);
+				}
+			}
+
+			var oReq = getXMLHttpRequest();
+
+			if (oReq != null) 
+			{
+				oReq.open("POST", url, (typeof async === "undefined") ? true : async);
+				oReq.onreadystatechange = handler;
+				oReq.send(postdata);
+			} else 
+			{
+				window.alert("AJAX (XMLHTTP) not supported.");
+			}
+
+		}
+	</script>
+  </body>
+</html>

@@ -1,0 +1,164 @@
+﻿@Master['MasterPage']
+@Section['Content']
+<div class="content-wrapper">
+	<section class="content-header">
+		<h1>Notification Center</h1>
+	</section>
+	<section class="content">
+		<div class="row">
+			<section class="col-md-12">
+				<div class="box box-info col-sm-1">
+					<div class="box-body table-responsive">
+						<table id="notificationCenter" class="table table-bordered table-striped">
+							<thead>
+								<tr>
+									<th width="1%">Delete</th>
+									<th width="15%">EMail</th>
+									<th width="12%">Date</th>
+									<th>Message</th>
+									<th width="8%">Acknnowledge</th>
+								</tr>
+							</thead>
+							<tbody>
+								@Each.Notifications
+								<tr id="@Current.Item1.ID">
+									<td><input type="checkbox"></td>
+									<td><a target="_blank" href="/botlogs?email=@Current.Item1.EMail">@Current.Item1.EMail</a></td>
+									<td>@Current.Item2</td>
+									<td>@Current.Item1.Data</td>
+									<td><button class="btn btn-block btn-primary btn-xs" onclick="acknowledgeNotification('@Current.Item1.ID');">Acknowledge</button></td>
+								</tr>
+								@EndEach
+							</tbody>
+							<tfoot>
+								<tr>
+									<th width="1%">Delete</th>
+									<th width="15%">EMail</th>
+									<th width="12%">Date</th>
+									<th>Message</th>
+									<th width="8%">Acknnowledge</th>
+								</tr>
+							</tfoot>
+						</table>
+					</div>
+					<div class="box-footer">
+						<button type="button" class="btn btn-block btn-primary" onclick="acknowledgeNotifications();">Acknnowledge all selected notifications</button>
+						<button type="button" class="btn btn-block btn-primary" onclick="acknowledgeAllNotifications();">Acknnowledge all notifications</button>
+					</div>
+				</div>
+			</section>
+		</div>
+	</section>
+</div>
+<script>
+	function acknowledgeNotifications()
+	{
+		var allids = "";
+		var table = document.getElementById("notificationCenter");
+		for (var i = 0, row; row = table.rows[i]; i++) {
+			if(row.id == "")
+			{
+				continue;
+			}
+			var checked = row.cells[0].childNodes[0].checked;
+			if(checked)
+			{
+				allids += row.id + ",";
+			}
+		}
+		if(allids.endsWith(","))
+		{
+			allids = allids.substring(0, allids.length - 1);
+		}
+		if(allids == "")
+		{
+			return;
+		}
+			
+		httpPost("/acknowledgenotificationarray", "notification="+encodeURIComponent(allids), function(req)
+		{
+			var result = req.responseText;
+			if (result == "true") {
+				location.reload();
+			}
+		});	
+	}
+	function acknowledgeAllNotifications()
+	{
+		var allids = "";
+		var table = document.getElementById("notificationCenter");
+		for (var i = 0, row; row = table.rows[i]; i++) {
+			if(row.id == "")
+			{
+				continue;
+			}
+			allids += row.id + ",";
+		}
+		if(allids.endsWith(","))
+		{
+			allids = allids.substring(0, allids.length - 1);
+		}
+		if(allids == "")
+		{
+			return;
+		}
+		
+		httpPost("/acknowledgenotificationarray", "notification="+encodeURIComponent(allids), function(req)
+		{
+			var result = req.responseText;
+			if (result == "true") {
+				location.reload();
+			}
+		});	
+	}
+	function acknowledgeNotification(id)
+	{
+		httpPost("/acknowledgenotification", "notification="+encodeURIComponent(id), function(req)
+		{
+			var result = req.responseText;
+			if (result == "true") {
+				location.reload();
+			}
+		});	
+	}
+	function httpPost(url, postdata, callback, async)
+	{
+		function getXMLHttpRequest() 
+		{
+			if (window.XMLHttpRequest) {
+				return new window.XMLHttpRequest;
+			} else 
+			{
+				try 
+				{
+					return new ActiveXObject("MSXML2.XMLHTTP");
+				} 
+				catch (ex)
+				{
+					return null;
+				}
+			}
+		}
+	
+		function handler() 
+		{
+			if (oReq.readyState == 4 /* complete */ ) 
+			{
+				callback(oReq);
+			}
+		}
+	
+		var oReq = getXMLHttpRequest();
+	
+		if (oReq != null) 
+		{
+			oReq.open("POST", url, (typeof async === "undefined") ? true : async);
+			oReq.onreadystatechange = handler;
+			oReq.send(postdata);
+		} else 
+		{
+			window.alert("AJAX (XMLHTTP) not supported.");
+		}
+	}
+</script>
+@EndSection

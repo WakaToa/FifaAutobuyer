@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Autobuyer.web</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
+
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	
+  </head>
+  <body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+
+      <header class="main-header">
+        <div class="logo">
+          <span class="logo-mini"><b>AB</b>16</span>
+          <span class="logo-lg"><b>Autobuyer</b>.web</span>
+        </div>
+
+        <nav class="navbar navbar-static-top" role="navigation">
+          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+          </a>
+          <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+			   <li class="dropdown user user-menu">
+					<a href="logout" class="toggle" data-toggle="dropdown">
+						<span class="hidden-xs">Menu</span>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="user-footer">
+							<a href="logout" class="btn btn-default btn-flat">Sign out</a>
+						</li>
+					</ul>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+	  
+      <aside class="main-sidebar">
+        <section class="sidebar">
+          <ul class="sidebar-menu">
+			<li><a href="/"><i class="fa fa-link"></i> <span>Home {DATABASENAME}</span></a></li>
+			<li><a href="notificationcenter"><i class="fa fa-link"></i> <span>Notification Center</span><span class="label label-primary pull-right">{NOTIFICATIONCOUNT}</span></a></li>
+            <li class="header">SETTINGS</li>
+			<li><a href="botmanager"><i class="fa fa-link"></i> <span>Bot Manager</span></a></li>
+            <li><a href="generalsettings"><i class="fa fa-link"></i> <span>General Settings</span></a></li>
+			<li><a href="managelist"><i class="fa fa-link"></i> <span>Manage List</span></a></li>
+			<li class="treeview">
+              <a href="#"><i class="fa fa-link"></i> <span>Manage Accounts</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li><a href="addaccount"><i class="fa fa-circle-o"></i>Add Account</a></li>
+                <li><a href="editaccount"><i class="fa fa-circle-o"></i>Edit Account</a></li>
+              </ul>
+            </li>
+			<li class="header">LOGS</li>
+            <li class="treeview">
+              <a href="#"><i class="fa fa-link"></i> <span>BIN Logs</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li><a href="profitlogs?type=BIN"><i class="fa fa-circle-o"></i>Profit Logs</a></li>
+                <li><a href="buys?type=BIN"><i class="fa fa-circle-o"></i>Buys</a></li>
+				<li><a href="sells?type=BIN"><i class="fa fa-circle-o"></i>Sells</a></li>
+              </ul>
+            </li>
+			<li class="treeview">
+              <a href="#"><i class="fa fa-link"></i> <span>BID Logs</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li><a href="profitlogs?type=BID"><i class="fa fa-circle-o"></i>Profit Logs</a></li>
+                <li><a href="buys?type=BID"><i class="fa fa-circle-o"></i>Buys</a></li>
+				<li><a href="sells?type=BID"><i class="fa fa-circle-o"></i>Sells</a></li>
+              </ul>
+            </li>
+			<li class="treeview">
+              <a href="#"><i class="fa fa-link"></i> <span>Combined Logs</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li><a href="profitlogs?type=CMB"><i class="fa fa-circle-o"></i>Profit Logs</a></li>
+                <li><a href="buys?type=CMB"><i class="fa fa-circle-o"></i>Buys</a></li>
+				<li><a href="sells?type=CMB"><i class="fa fa-circle-o"></i>Sells</a></li>
+              </ul>
+            </li>
+			<li><a href="botlogs"><i class="fa fa-link"></i> <span>Bot Logs</span></a></li>
+			<li><a href="exceptionlogs"><i class="fa fa-link"></i> <span>Exception Logs</span></a></li>
+			<li><a href="itemstatistic"><i class="fa fa-link"></i> <span>Item Statistic</span></a></li>
+			<li><a href="accountstatistic"><i class="fa fa-link"></i> <span>Account Statistic</span></a></li>
+			<li class="active"><a href="botstatistic"><i class="fa fa-link"></i> <span>Bot Statistic</span></a></li>
+			<li><a href="mule"><i class="fa fa-link"></i> <span>Mule Manager</span></a></li>
+          </ul>
+        </section>
+      </aside>
+
+      <div class="content-wrapper">
+        <section class="content-header">
+          <h1>
+            Bot Statistic
+          </h1>
+        </section>
+        <section class="content">
+			<div class="row">
+				<section class="col-md-12">
+					<div class="box box-primary">
+						<div class="box-header with-border">
+							<h3 class="box-title">Coin/Profit Log | Last 24 Hours: {PROFITLAST24HRS}</h3>
+
+							<div class="box-tools pull-right">
+								<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+								</button>
+								<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+							</div>
+						</div>
+						<!--<div class="box-body chart-responsive">
+							<div class="chart" id="revenue-chart"></div>
+						</div>-->
+						<div class="box-body chart-responsive">
+							<div class="chart" id="line-chart"></div>
+						</div>
+					</div>
+				</section>
+			</div>
+		</section>
+    </div>
+
+	<script src="plugins/sorttable.js"></script>
+    <script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="dist/js/app.min.js"></script>
+	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+	<script src="plugins/fastclick/fastclick.js"></script>
+	<script src="dist/js/demo.js"></script>
+	
+	<script>
+	/*	 var area = new Morris.Area({
+      element: 'revenue-chart',
+      resize: true,
+      data: [
+        {y: '12:00', item1: 21053618, item2: 3230047},
+        {y: '14:00', item1: 21019378, item2: 3200835},
+        {y: '16:00', item1: 20950088, item2: 3158607},
+        {y: '18:00', item1: 20853005, item2: 3243632},
+        {y: '20:00', item1: 20753457, item2: 3236697},
+        {y: '22:00', item1: 20747092, item2: 3258832},
+        {y: '00:00', item1: 20705596, item2: 3267477},
+        {y: '02:00', item1: 20660587, item2: 3288567},
+        {y: '04:00', item1: 20660788, item2: 3268095},
+        {y: '06:00', item1: 20671810, item2: 3228480},
+		{y: '08:00', item1: 20496815, item2: 3390360},
+		{y: '10:00', item1: 20496190, item2: 3278925}
+      ],
+	  parseTime: false,
+      xkey: 'y',
+      ykeys: ['item1', 'item2'],
+      labels: ['Total Coins', 'TP Value'],
+      lineColors: ['#a0d0e0', '#3c8dbc'],
+      hideHover: 'auto',
+	  ymax : 25000000, ymin : 20000000,
+    });*/
+	{JSONDATA}
+	</script>
+	
+  </body>
+</html>

@@ -1,0 +1,1001 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2960365A-A7BD-42AD-BCD7-03C2D345BDC7}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FifaAutobuyer</RootNamespace>
+    <AssemblyName>FifaAutobuyer</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Common.Logging, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.3.4.1\lib\net40\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging.Core, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.Core.3.4.1\lib\net40\Common.Logging.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Costura, Version=1.6.2.0, Culture=neutral, PublicKeyToken=9919ef960d84173d, processorArchitecture=MSIL">
+      <HintPath>..\packages\Costura.Fody.1.6.2\lib\dotnet\Costura.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentScheduler, Version=5.3.0.0, Culture=neutral, PublicKeyToken=b76503528a14ebd1, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentScheduler.5.3.0\lib\net40\FluentScheduler.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.6.5.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.6.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nancy.2.0.0-clinteastwood\lib\net452\Nancy.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Nancy.Authentication.Basic, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nancy.Authentication.Basic.2.0.0-clinteastwood\lib\net452\Nancy.Authentication.Basic.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Nancy.Hosting.Self, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nancy.Hosting.Self.2.0.0-clinteastwood\lib\net452\Nancy.Hosting.Self.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="S22.Imap, Version=3.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\S22.Imap.3.6.0.0\lib\net40\S22.Imap.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity.Design" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Data.Services" />
+    <Reference Include="System.Data.SqlXml" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Database\DatabaseScheduler.cs" />
+    <Compile Include="Database\FUTCreationDatabase.cs" />
+    <Compile Include="Database\FUTLogsDatabase.cs" />
+    <Compile Include="Database\Settings\FUTSettings.cs" />
+    <Compile Include="Database\FUTSettingsDatabase.cs" />
+    <Compile Include="Database\Web\WebSession.cs" />
+    <Compile Include="Database\Web\WebSessionsDatabase.cs" />
+    <Compile Include="Fifa\ActionScheduler\ActionModel.cs" />
+    <Compile Include="Fifa\ActionScheduler\ActionScheduler.cs" />
+    <Compile Include="Fifa\Captcha\Json\AntiCaptchaCreateTaskJson.cs" />
+    <Compile Include="Fifa\Captcha\Json\AntiCaptchaResultJson.cs" />
+    <Compile Include="Fifa\Collection\CustomCollection.cs" />
+    <Compile Include="Fifa\Collection\ErrorCollection.cs" />
+    <Compile Include="Fifa\Database\FUTAccountStatistic.cs" />
+    <Compile Include="Fifa\Database\FUTBotLog.cs" />
+    <Compile Include="Fifa\Database\FUTBotStatistics.cs" />
+    <Compile Include="Fifa\Database\FUTBuy.cs" />
+    <Compile Include="Fifa\Database\FUTBuyBidType.cs" />
+    <Compile Include="Fifa\Database\FUTCoins.cs" />
+    <Compile Include="Fifa\Database\FUTAccount.cs" />
+    <Compile Include="Database\FUTAccountsDatabase.cs" />
+    <Compile Include="Fifa\Database\FUTExceptionLog.cs" />
+    <Compile Include="Fifa\Database\FUTItemProfit.cs" />
+    <Compile Include="Fifa\Database\FUTListItem.cs" />
+    <Compile Include="Fifa\Database\FUTLog.cs" />
+    <Compile Include="Fifa\Database\FUTMuleApiStatistic.cs" />
+    <Compile Include="Fifa\Database\FUTNotification.cs" />
+    <Compile Include="Fifa\Database\FUTPlatform.cs" />
+    <Compile Include="Fifa\Database\FUTPriceCheck.cs" />
+    <Compile Include="Fifa\Database\FUTProxy.cs" />
+    <Compile Include="Fifa\Database\FUTSell.cs" />
+    <Compile Include="Fifa\EADatabase\EADatabaseScraper.cs" />
+    <Compile Include="Fifa\EADatabase\EADatabaseResultJson.cs" />
+    <Compile Include="Fifa\Extensions\CookieContainerExtensions.cs" />
+    <Compile Include="Fifa\Extensions\DatabaseExtensions.cs" />
+    <Compile Include="Fifa\Extensions\EnumerableExtensions.cs" />
+    <Compile Include="Fifa\Extensions\IntegerExtensions.cs" />
+    <Compile Include="Fifa\Extensions\Pair.cs" />
+    <Compile Include="Fifa\Extensions\StringExtensions.cs" />
+    <Compile Include="Fifa\Extensions\TimeSpanExtensions.cs" />
+    <Compile Include="Fifa\Factories\FUTRequestFactory.cs" />
+    <Compile Include="Fifa\FUTClient.cs" />
+    <Compile Include="Fifa\Http\EncodingHelper.cs" />
+    <Compile Include="Fifa\Http\HttpClientEx.cs" />
+    <Compile Include="Fifa\Http\HttpHeaders.cs" />
+    <Compile Include="Fifa\MailService\IMAPMailClient.cs" />
+    <Compile Include="Fifa\Managers\AppSettingsManager.cs" />
+    <Compile Include="Fifa\Managers\CookieManager.cs" />
+    <Compile Include="Fifa\Http\NonStandardHttpHeaders.cs" />
+    <Compile Include="Fifa\Http\RequestPerMinuteManager.cs" />
+    <Compile Include="Fifa\MailService\IMailClient.cs" />
+    <Compile Include="Fifa\MailService\MailClientFactory.cs" />
+    <Compile Include="Fifa\Managers\AuctionManager.cs" />
+    <Compile Include="Fifa\Managers\BotManager.cs" />
+    <Compile Include="Fifa\Managers\FUTItemManager.cs" />
+    <Compile Include="Fifa\Managers\ItemListManager.cs" />
+    <Compile Include="Fifa\Managers\LoginManager.cs" />
+    <Compile Include="Fifa\Managers\MuleManager.cs" />
+    <Compile Include="Fifa\Managers\MultipleTradesManager.cs" />
+    <Compile Include="Fifa\Managers\ProxyManager.cs" />
+    <Compile Include="Fifa\Managers\ResourceIDManager.cs" />
+    <Compile Include="Fifa\Managers\TimeScheduler.cs" />
+    <Compile Include="Fifa\Models\AccountTimingModel.cs" />
+    <Compile Include="Fifa\Models\Active.cs" />
+    <Compile Include="Fifa\Models\AttributeList.cs" />
+    <Compile Include="Fifa\Models\AuctionInfo.cs" />
+    <Compile Include="Fifa\Models\BidTokens.cs" />
+    <Compile Include="Fifa\Models\ChemistryStyle.cs" />
+    <Compile Include="Fifa\Models\Currency.cs" />
+    <Compile Include="Fifa\Models\DateOfBirth.cs" />
+    <Compile Include="Fifa\Models\Entry.cs" />
+    <Compile Include="Fifa\Models\Feature.cs" />
+    <Compile Include="Fifa\Models\FifaConfig.cs" />
+    <Compile Include="Fifa\Models\FUTErrorCode.cs" />
+    <Compile Include="Fifa\Models\FUTSearchParameter.cs" />
+    <Compile Include="Fifa\Models\FUTSearchParameterType.cs" />
+    <Compile Include="Fifa\Models\Item.cs" />
+    <Compile Include="Fifa\Models\ItemData.cs" />
+    <Compile Include="Fifa\Models\ItemDataMoved.cs" />
+    <Compile Include="Fifa\Models\LoginMethod.cs" />
+    <Compile Include="Fifa\Models\MuleStatus.cs" />
+    <Compile Include="Fifa\Models\MulingSearchObject.cs" />
+    <Compile Include="Fifa\Models\OfferItemModel.cs" />
+    <Compile Include="Fifa\Models\Persona.cs" />
+    <Compile Include="Fifa\Models\Pid.cs" />
+    <Compile Include="Fifa\Models\PileSizes.cs" />
+    <Compile Include="Fifa\Models\Position.cs" />
+    <Compile Include="Fifa\Models\PriceCheckItemModel.cs" />
+    <Compile Include="Fifa\Models\Reliability.cs" />
+    <Compile Include="Fifa\Models\SimpleItemStatistic.cs" />
+    <Compile Include="Fifa\Models\SimpleSearchItemModel.cs" />
+    <Compile Include="Fifa\Models\PriceCheckReturnModel.cs" />
+    <Compile Include="Fifa\Models\ShardInfo.cs" />
+    <Compile Include="Fifa\Models\SimpleTime.cs" />
+    <Compile Include="Fifa\Models\Squad.cs" />
+    <Compile Include="Fifa\Models\SquadList.cs" />
+    <Compile Include="Fifa\Models\TransferMarketSearchObject.cs" />
+    <Compile Include="Fifa\Models\UnopenedPacks.cs" />
+    <Compile Include="Fifa\Models\UserAccountInfo.cs" />
+    <Compile Include="Fifa\Models\UserClubList.cs" />
+    <Compile Include="Fifa\Models\UserFriendlyItemObject.cs" />
+    <Compile Include="Fifa\MuleApi\Clients\GameTradeEasyApiClient.cs" />
+    <Compile Include="Fifa\MuleApi\Clients\ApiClient.cs" />
+    <Compile Include="Fifa\MuleApi\Clients\MuleFactoryApiClient.cs" />
+    <Compile Include="Fifa\MuleApi\Clients\WholeSaleApiClient.cs" />
+    <Compile Include="Fifa\MuleApi\MuleApiClient.cs" />
+    <Compile Include="Fifa\MuleApi\MuleApiPlayer.cs" />
+    <Compile Include="Fifa\MuleApi\Requests\MuleFactoryRequests.cs" />
+    <Compile Include="Fifa\MuleApi\Responses\GameTradeEasyResponses.cs" />
+    <Compile Include="Fifa\MuleApi\MuleClient.cs" />
+    <Compile Include="Fifa\MuleApi\Responses\MuleFactoryResponses.cs" />
+    <Compile Include="Fifa\MuleApi\Responses\WholeSaleResponses.cs" />
+    <Compile Include="Fifa\PriceCalculation\CardsRequiredTable.cs" />
+    <Compile Include="Fifa\PriceCalculation\DifferenceTable.cs" />
+    <Compile Include="Fifa\PriceCalculation\FirstAverageTable.cs" />
+    <Compile Include="Fifa\PriceCalculation\SecondAverageTable.cs" />
+    <Compile Include="Fifa\Requests\BuyTradeRequest.cs" />
+    <Compile Include="Fifa\Requests\Constants.cs" />
+    <Compile Include="Fifa\Requests\CreditsRequest.cs" />
+    <Compile Include="Fifa\Requests\DeleteActiveMessageRequest.cs" />
+    <Compile Include="Fifa\Requests\DiscardItemRequest.cs" />
+    <Compile Include="Fifa\Requests\FUTRequestBase.cs" />
+    <Compile Include="Fifa\Requests\IFUTRequest.cs" />
+    <Compile Include="Fifa\Requests\LoginAndroidRequest.cs" />
+    <Compile Include="Fifa\Requests\LoginWebRequest.cs" />
+    <Compile Include="Fifa\Requests\LoginIOSRequest.cs" />
+    <Compile Include="Fifa\Requests\MoveItemToTradepileRequest.cs" />
+    <Compile Include="Fifa\Requests\NotAssignedRequest.cs" />
+    <Compile Include="Fifa\Requests\OfferItemOnTransferMarketRequest.cs" />
+    <Compile Include="Fifa\Requests\PileSizeRequest.cs" />
+    <Compile Include="Fifa\Requests\PriceLimitsRequest.cs" />
+    <Compile Include="Fifa\Requests\RelistAllRequest.cs" />
+    <Compile Include="Fifa\Requests\RemoveItemFromTradepileRequest.cs" />
+    <Compile Include="Fifa\Requests\RemoveItemsFromWatchlistRequest.cs" />
+    <Compile Include="Fifa\Requests\SetNewUserRequest.cs" />
+    <Compile Include="Fifa\Requests\SettingsRequest.cs" />
+    <Compile Include="Fifa\Requests\SolveCaptchaRequest.cs" />
+    <Compile Include="Fifa\Requests\TradepileRequest.cs" />
+    <Compile Include="Fifa\Requests\TransferMarketRequest.cs" />
+    <Compile Include="Fifa\Requests\UserHistoricalRequest.cs" />
+    <Compile Include="Fifa\Requests\UserMassInfoRequest.cs" />
+    <Compile Include="Fifa\Requests\UserRequest.cs" />
+    <Compile Include="Fifa\Requests\WatchlistRequest.cs" />
+    <Compile Include="Fifa\Responses\AuthResponse.cs" />
+    <Compile Include="Fifa\Responses\BuyItemResponse.cs" />
+    <Compile Include="Fifa\Responses\ConnectAuthResponse.cs" />
+    <Compile Include="Fifa\Responses\CreditsResponse.cs" />
+    <Compile Include="Fifa\Responses\DiscardItemResponse.cs" />
+    <Compile Include="Fifa\Responses\FUTError.cs" />
+    <Compile Include="Fifa\Responses\GrantAccessCodeResponse.cs" />
+    <Compile Include="Fifa\Responses\LoginResponse.cs" />
+    <Compile Include="Fifa\Responses\MoveItemResponse.cs" />
+    <Compile Include="Fifa\Responses\NotAssignedResponse.cs" />
+    <Compile Include="Fifa\Responses\OfferItemOnTransferMarketResponse.cs" />
+    <Compile Include="Fifa\Responses\PhishingResponse.cs" />
+    <Compile Include="Fifa\Responses\PidsMeResponse.cs" />
+    <Compile Include="Fifa\Responses\PileSizeResponse.cs" />
+    <Compile Include="Fifa\Responses\PlayersJsonResponse.cs" />
+    <Compile Include="Fifa\Responses\PriceLimitsResponse.cs" />
+    <Compile Include="Fifa\Responses\SettingsResponse.cs" />
+    <Compile Include="Fifa\Responses\ShardsResponse.cs" />
+    <Compile Include="Fifa\Responses\TradepileResponse.cs" />
+    <Compile Include="Fifa\Responses\TransferMarketResponse.cs" />
+    <Compile Include="Fifa\Responses\UserAccountsResponse.cs" />
+    <Compile Include="Fifa\Responses\UserHistoricalResponse.cs" />
+    <Compile Include="Fifa\Responses\UserMassInfoResponse.cs" />
+    <Compile Include="Fifa\Responses\UserResponse.cs" />
+    <Compile Include="Fifa\Responses\ValidateResponse.cs" />
+    <Compile Include="Fifa\Responses\WatchlistResponse.cs" />
+    <Compile Include="Fifa\Responses\WebPlayerItemResponse.cs" />
+    <Compile Include="Fifa\Semaphore\AsyncLock.cs" />
+    <Compile Include="Fifa\Semaphore\AsyncSemaphore.cs" />
+    <Compile Include="Fifa\Captcha\CaptchaSolver.cs" />
+    <Compile Include="Fifa\Services\FUTHasher.cs" />
+    <Compile Include="Fifa\Services\GoogleAuthenticator\Authenticator.cs" />
+    <Compile Include="Fifa\Services\GoogleAuthenticator\Base32Encoding.cs" />
+    <Compile Include="Fifa\Services\GoogleAuthenticator\CounterAuthenticator.cs" />
+    <Compile Include="Fifa\Services\GoogleAuthenticator\IUsedCodesManager.cs" />
+    <Compile Include="Fifa\Services\GoogleAuthenticator\QuickEAAuthenticator.cs" />
+    <Compile Include="Fifa\Services\GoogleAuthenticator\TimeAuthenticator.cs" />
+    <Compile Include="Fifa\Services\GoogleAuthenticator\UsedCodesManager.cs" />
+    <Compile Include="Fifa\Services\Helper.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServerWebpanel\PipeMessage.cs" />
+    <Compile Include="ServerWebpanel\WebpanelClient.cs" />
+    <Compile Include="WebServer\Handler\AuthenticationFailedHandler.cs" />
+    <Compile Include="WebServer\HttpWebServer.cs" />
+    <Compile Include="WebServer\Models\AccountManagerModel.cs" />
+    <Compile Include="WebServer\Models\AccountStatisticModel.cs" />
+    <Compile Include="WebServer\Models\BaseModel.cs" />
+    <Compile Include="WebServer\Models\BotManagerModel.cs" />
+    <Compile Include="WebServer\Models\BotStatisticModel.cs" />
+    <Compile Include="WebServer\Models\BuysSellsModel.cs" />
+    <Compile Include="WebServer\Models\DataLogsModel.cs" />
+    <Compile Include="WebServer\Models\GeneralSettingsModel.cs" />
+    <Compile Include="WebServer\Models\IndexModel.cs" />
+    <Compile Include="WebServer\Models\ItemStatisticModel.cs" />
+    <Compile Include="WebServer\Models\ManageListModel.cs" />
+    <Compile Include="WebServer\Models\MuleApiManagerModel.cs" />
+    <Compile Include="WebServer\Models\MuleManagerModel.cs" />
+    <Compile Include="WebServer\Models\MuleSessionModel.cs" />
+    <Compile Include="WebServer\Models\NotificationCenterModel.cs" />
+    <Compile Include="WebServer\Models\ProfitLogsModel.cs" />
+    <Compile Include="WebServer\Models\ProxyManagerModel.cs" />
+    <Compile Include="WebServer\Models\ActionSchedulerModel.cs" />
+    <Compile Include="WebServer\Pages\AccountManager.cs" />
+    <Compile Include="WebServer\Pages\AccountStatistic.cs" />
+    <Compile Include="WebServer\Pages\BotLogs.cs" />
+    <Compile Include="WebServer\Pages\BotManager.cs" />
+    <Compile Include="WebServer\Pages\BotStatistic.cs" />
+    <Compile Include="WebServer\Pages\Buys.cs" />
+    <Compile Include="WebServer\Pages\ExceptionLogs.cs" />
+    <Compile Include="WebServer\Pages\ExportData.cs" />
+    <Compile Include="WebServer\Pages\GeneralSettings.cs" />
+    <Compile Include="WebServer\Pages\Index.cs" />
+    <Compile Include="WebServer\Pages\ItemStatistic.cs" />
+    <Compile Include="WebServer\Pages\ManageList.cs" />
+    <Compile Include="WebServer\Pages\MuleApiManager.cs" />
+    <Compile Include="WebServer\Pages\MuleManager.cs" />
+    <Compile Include="WebServer\Pages\MuleSession.cs" />
+    <Compile Include="WebServer\Pages\NotificationCenter.cs" />
+    <Compile Include="WebServer\Pages\ProfitLogs.cs" />
+    <Compile Include="WebServer\Pages\ProxyManager.cs" />
+    <Compile Include="WebServer\Pages\ActionScheduler.cs" />
+    <Compile Include="WebServer\Pages\Sells.cs" />
+    <Compile Include="WebServer\Handler\UserValidator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <EmbeddedResource Include="WebServer\Views\AccountManager.sshtml" />
+    <EmbeddedResource Include="WebServer\Views\AccountStatistic.sshtml" />
+    <EmbeddedResource Include="WebServer\Views\bootstrap\css\bootstrap.css.map" />
+    <EmbeddedResource Include="WebServer\Views\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <EmbeddedResource Include="WebServer\Views\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <EmbeddedResource Include="WebServer\Views\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <EmbeddedResource Include="WebServer\Views\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
+    <EmbeddedResource Include="WebServer\Views\BotManager.sshtml" />
+    <EmbeddedResource Include="WebServer\Views\BotStatistic.sshtml" />
+    <EmbeddedResource Include="WebServer\Views\BuysSells.sshtml" />
+    <EmbeddedResource Include="WebServer\Views\Calculation.sshtml" />
+    <EmbeddedResource Include="WebServer\Views\DataLogs.sshtml" />
+    <EmbeddedResource Include="WebServer\Views\GeneralSettings.sshtml" />
+    <EmbeddedResource Include="WebServer\Views\Index.sshtml" />
+    <EmbeddedResource Include="WebServer\Views\ItemStatistic.sshtml" />
+    <EmbeddedResource Include="WebServer\Views\ManageList.sshtml" />
+    <EmbeddedResource Include="WebServer\Views\Masterpage.sshtml" />
+    <EmbeddedResource Include="WebServer\Views\MuleApiManager.sshtml" />
+    <EmbeddedResource Include="WebServer\Views\MuleManager.sshtml" />
+    <EmbeddedResource Include="WebServer\Views\MuleSession.sshtml" />
+    <EmbeddedResource Include="WebServer\Views\NotificationCenter.sshtml" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\CHANGES.md" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\LICENSE.md" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\plugins\scayt\LICENSE.md" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\plugins\scayt\README.md" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\plugins\wsc\LICENSE.md" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\plugins\wsc\README.md" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\README.md" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\skins\moono\readme.md" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\ColReorder\Readme.md" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\ColVis\Readme.md" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\FixedColumns\Readme.md" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\Responsive\css\dataTables.responsive.scss" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\Scroller\examples\data\ssp.php" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\TableTools\images\psd\collection.psd" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\TableTools\images\psd\copy document.psd" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\TableTools\images\psd\file_types.psd" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\TableTools\images\psd\printer.psd" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\TableTools\Readme.md" />
+    <EmbeddedResource Include="WebServer\Views\plugins\input-mask\phone-codes\phone-be.json" />
+    <EmbeddedResource Include="WebServer\Views\plugins\input-mask\phone-codes\phone-codes.json" />
+    <EmbeddedResource Include="WebServer\Views\ProfitLogs.sshtml" />
+    <EmbeddedResource Include="WebServer\Views\ProxyManager.sshtml" />
+    <EmbeddedResource Include="WebServer\Views\ActionScheduler.sshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 und x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\AsyncUsageAnalyzers.1.0.0-alpha003\analyzers\dotnet\AsyncUsageAnalyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="FodyWeavers.xml" />
+    <EmbeddedResource Include="WebServer\Views\bootstrap\css\bootstrap.css" />
+    <EmbeddedResource Include="WebServer\Views\bootstrap\css\bootstrap.min.css" />
+    <EmbeddedResource Include="WebServer\Views\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <EmbeddedResource Include="WebServer\Views\bootstrap\js\bootstrap.js" />
+    <EmbeddedResource Include="WebServer\Views\bootstrap\js\bootstrap.min.js" />
+    <EmbeddedResource Include="WebServer\Views\bootstrap\js\npm.js" />
+    <EmbeddedResource Include="WebServer\Views\dist\css\AdminLTE.css" />
+    <EmbeddedResource Include="WebServer\Views\dist\css\AdminLTE.min.css" />
+    <EmbeddedResource Include="WebServer\Views\dist\css\skins\skin-black-light.css" />
+    <EmbeddedResource Include="WebServer\Views\dist\css\skins\skin-black-light.min.css" />
+    <EmbeddedResource Include="WebServer\Views\dist\css\skins\skin-black.css" />
+    <EmbeddedResource Include="WebServer\Views\dist\css\skins\skin-black.min.css" />
+    <EmbeddedResource Include="WebServer\Views\dist\css\skins\skin-blue-light.css" />
+    <EmbeddedResource Include="WebServer\Views\dist\css\skins\skin-blue-light.min.css" />
+    <EmbeddedResource Include="WebServer\Views\dist\css\skins\skin-blue.css" />
+    <EmbeddedResource Include="WebServer\Views\dist\css\skins\skin-blue.min.css" />
+    <EmbeddedResource Include="WebServer\Views\dist\css\skins\skin-green-light.css" />
+    <EmbeddedResource Include="WebServer\Views\dist\css\skins\skin-green-light.min.css" />
+    <EmbeddedResource Include="WebServer\Views\dist\css\skins\skin-green.css" />
+    <EmbeddedResource Include="WebServer\Views\dist\css\skins\skin-green.min.css" />
+    <EmbeddedResource Include="WebServer\Views\dist\css\skins\skin-purple-light.css" />
+    <EmbeddedResource Include="WebServer\Views\dist\css\skins\skin-purple-light.min.css" />
+    <EmbeddedResource Include="WebServer\Views\dist\css\skins\skin-purple.css" />
+    <EmbeddedResource Include="WebServer\Views\dist\css\skins\skin-purple.min.css" />
+    <EmbeddedResource Include="WebServer\Views\dist\css\skins\skin-red-light.css" />
+    <EmbeddedResource Include="WebServer\Views\dist\css\skins\skin-red-light.min.css" />
+    <EmbeddedResource Include="WebServer\Views\dist\css\skins\skin-red.css" />
+    <EmbeddedResource Include="WebServer\Views\dist\css\skins\skin-red.min.css" />
+    <EmbeddedResource Include="WebServer\Views\dist\css\skins\skin-yellow-light.css" />
+    <EmbeddedResource Include="WebServer\Views\dist\css\skins\skin-yellow-light.min.css" />
+    <EmbeddedResource Include="WebServer\Views\dist\css\skins\skin-yellow.css" />
+    <EmbeddedResource Include="WebServer\Views\dist\css\skins\skin-yellow.min.css" />
+    <EmbeddedResource Include="WebServer\Views\dist\css\skins\_all-skins.css" />
+    <EmbeddedResource Include="WebServer\Views\dist\css\skins\_all-skins.min.css" />
+    <EmbeddedResource Include="WebServer\Views\dist\img\avatar.png" />
+    <EmbeddedResource Include="WebServer\Views\dist\img\avatar04.png" />
+    <EmbeddedResource Include="WebServer\Views\dist\img\avatar2.png" />
+    <EmbeddedResource Include="WebServer\Views\dist\img\avatar3.png" />
+    <EmbeddedResource Include="WebServer\Views\dist\img\avatar5.png" />
+    <EmbeddedResource Include="WebServer\Views\dist\img\boxed-bg.jpg" />
+    <EmbeddedResource Include="WebServer\Views\dist\img\boxed-bg.png" />
+    <EmbeddedResource Include="WebServer\Views\dist\img\credit\american-express.png" />
+    <EmbeddedResource Include="WebServer\Views\dist\img\credit\cirrus.png" />
+    <EmbeddedResource Include="WebServer\Views\dist\img\credit\mastercard.png" />
+    <EmbeddedResource Include="WebServer\Views\dist\img\credit\mestro.png" />
+    <EmbeddedResource Include="WebServer\Views\dist\img\credit\paypal.png" />
+    <EmbeddedResource Include="WebServer\Views\dist\img\credit\paypal2.png" />
+    <EmbeddedResource Include="WebServer\Views\dist\img\credit\visa.png" />
+    <EmbeddedResource Include="WebServer\Views\dist\img\default-50x50.gif" />
+    <EmbeddedResource Include="WebServer\Views\dist\img\icons.png" />
+    <EmbeddedResource Include="WebServer\Views\dist\img\photo1.png" />
+    <EmbeddedResource Include="WebServer\Views\dist\img\photo2.png" />
+    <EmbeddedResource Include="WebServer\Views\dist\img\photo3.jpg" />
+    <EmbeddedResource Include="WebServer\Views\dist\img\photo4.jpg" />
+    <EmbeddedResource Include="WebServer\Views\dist\img\user1-128x128.jpg" />
+    <EmbeddedResource Include="WebServer\Views\dist\img\user2-160x160.jpg" />
+    <EmbeddedResource Include="WebServer\Views\dist\img\user3-128x128.jpg" />
+    <EmbeddedResource Include="WebServer\Views\dist\img\user4-128x128.jpg" />
+    <EmbeddedResource Include="WebServer\Views\dist\img\user5-128x128.jpg" />
+    <EmbeddedResource Include="WebServer\Views\dist\img\user6-128x128.jpg" />
+    <EmbeddedResource Include="WebServer\Views\dist\img\user7-128x128.jpg" />
+    <EmbeddedResource Include="WebServer\Views\dist\img\user8-128x128.jpg" />
+    <EmbeddedResource Include="WebServer\Views\dist\js\app.js" />
+    <EmbeddedResource Include="WebServer\Views\dist\js\app.min.js" />
+    <EmbeddedResource Include="WebServer\Views\dist\js\demo.js" />
+    <EmbeddedResource Include="WebServer\Views\dist\js\pages\dashboard.js" />
+    <EmbeddedResource Include="WebServer\Views\dist\js\pages\dashboard2.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\bootstrap-slider\bootstrap-slider.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\bootstrap-slider\slider.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\bootstrap-wysihtml5\bootstrap3-wysihtml5.all.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\bootstrap-wysihtml5\bootstrap3-wysihtml5.all.min.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\bootstrap-wysihtml5\bootstrap3-wysihtml5.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\bootstrap-wysihtml5\bootstrap3-wysihtml5.min.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\chartjs\Chart.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\chartjs\Chart.min.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\adapters\jquery.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\build-config.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\ckeditor.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\config.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\contents.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\lang\en.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\plugins\a11yhelp\dialogs\a11yhelp.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\plugins\a11yhelp\dialogs\lang\en.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\plugins\about\dialogs\about.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\plugins\about\dialogs\hidpi\logo_ckeditor.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\plugins\about\dialogs\logo_ckeditor.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\plugins\clipboard\dialogs\paste.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\plugins\dialog\dialogDefinition.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\plugins\fakeobjects\images\spacer.gif" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\plugins\icons.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\plugins\icons_hidpi.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\plugins\image\dialogs\image.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\plugins\image\images\noimage.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\plugins\link\dialogs\anchor.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\plugins\link\dialogs\link.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\plugins\link\images\anchor.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\plugins\link\images\hidpi\anchor.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\plugins\magicline\images\hidpi\icon.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\plugins\magicline\images\icon.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\plugins\pastefromword\filter\default.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\plugins\scayt\dialogs\options.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\plugins\scayt\dialogs\toolbar.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\plugins\specialchar\dialogs\lang\en.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\plugins\specialchar\dialogs\specialchar.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\plugins\tabletools\dialogs\tableCell.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\plugins\table\dialogs\table.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\plugins\wsc\dialogs\ciframe.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\plugins\wsc\dialogs\tmp.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\plugins\wsc\dialogs\tmpFrameset.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\plugins\wsc\dialogs\wsc.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\plugins\wsc\dialogs\wsc.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\plugins\wsc\dialogs\wsc_ie.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\skins\moono\dialog.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\skins\moono\dialog_ie.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\skins\moono\dialog_ie7.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\skins\moono\dialog_ie8.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\skins\moono\dialog_iequirks.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\skins\moono\dialog_opera.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\skins\moono\editor.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\skins\moono\editor_gecko.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\skins\moono\editor_ie.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\skins\moono\editor_ie7.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\skins\moono\editor_ie8.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\skins\moono\editor_iequirks.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\skins\moono\icons.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\skins\moono\icons_hidpi.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\skins\moono\images\arrow.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\skins\moono\images\close.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\skins\moono\images\hidpi\close.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\skins\moono\images\hidpi\lock-open.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\skins\moono\images\hidpi\lock.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\skins\moono\images\hidpi\refresh.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\skins\moono\images\lock-open.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\skins\moono\images\lock.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\skins\moono\images\refresh.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ckeditor\styles.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\colorpicker\bootstrap-colorpicker.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\colorpicker\bootstrap-colorpicker.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\colorpicker\bootstrap-colorpicker.min.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\colorpicker\bootstrap-colorpicker.min.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\colorpicker\img\alpha-horizontal.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\colorpicker\img\alpha.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\colorpicker\img\hue-horizontal.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\colorpicker\img\hue.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\colorpicker\img\saturation.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\dataTables.bootstrap.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\dataTables.bootstrap.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\dataTables.bootstrap.min.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\AutoFill\css\dataTables.autoFill.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\AutoFill\css\dataTables.autoFill.min.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\AutoFill\examples\columns.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\AutoFill\examples\complete-callback.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\AutoFill\examples\fill-both.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\AutoFill\examples\fill-horizontal.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\AutoFill\examples\index.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\AutoFill\examples\scrolling.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\AutoFill\examples\simple.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\AutoFill\examples\step-callback.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\AutoFill\images\filler.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\AutoFill\js\dataTables.autoFill.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\AutoFill\js\dataTables.autoFill.min.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\AutoFill\Readme.txt" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\ColReorder\css\dataTables.colReorder.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\ColReorder\css\dataTables.colReorder.min.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\ColReorder\examples\alt_insert.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\ColReorder\examples\colvis.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\ColReorder\examples\col_filter.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\ColReorder\examples\fixedcolumns.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\ColReorder\examples\fixedheader.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\ColReorder\examples\index.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\ColReorder\examples\jqueryui.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\ColReorder\examples\new_init.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\ColReorder\examples\predefined.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\ColReorder\examples\realtime.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\ColReorder\examples\reset.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\ColReorder\examples\scrolling.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\ColReorder\examples\server_side.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\ColReorder\examples\simple.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\ColReorder\examples\state_save.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\ColReorder\images\insert.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\ColReorder\js\dataTables.colReorder.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\ColReorder\js\dataTables.colReorder.min.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\ColReorder\License.txt" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\ColVis\css\dataTables.colVis.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\ColVis\css\dataTables.colvis.jqueryui.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\ColVis\css\dataTables.colVis.min.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\ColVis\examples\button_order.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\ColVis\examples\exclude_columns.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\ColVis\examples\group_columns.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\ColVis\examples\index.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\ColVis\examples\jqueryui.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\ColVis\examples\mouseover.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\ColVis\examples\new_init.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\ColVis\examples\restore.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\ColVis\examples\simple.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\ColVis\examples\text.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\ColVis\examples\title_callback.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\ColVis\examples\two_tables.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\ColVis\examples\two_tables_identical.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\ColVis\js\dataTables.colVis.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\ColVis\js\dataTables.colVis.min.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\ColVis\License.txt" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\FixedColumns\css\dataTables.fixedColumns.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\FixedColumns\css\dataTables.fixedColumns.min.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\FixedColumns\examples\bootstrap.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\FixedColumns\examples\colvis.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\FixedColumns\examples\col_filter.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\FixedColumns\examples\css_size.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\FixedColumns\examples\index.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\FixedColumns\examples\index_column.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\FixedColumns\examples\left_right_columns.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\FixedColumns\examples\right_column.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\FixedColumns\examples\rowspan.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\FixedColumns\examples\server-side-processing.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\FixedColumns\examples\simple.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\FixedColumns\examples\size_fixed.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\FixedColumns\examples\size_fluid.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\FixedColumns\examples\two_columns.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\FixedColumns\js\dataTables.fixedColumns.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\FixedColumns\js\dataTables.fixedColumns.min.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\FixedColumns\License.txt" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\FixedHeader\css\dataTables.fixedHeader.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\FixedHeader\css\dataTables.fixedHeader.min.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\FixedHeader\examples\header_footer.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\FixedHeader\examples\index.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\FixedHeader\examples\simple.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\FixedHeader\examples\top_left_right.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\FixedHeader\examples\two_tables.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\FixedHeader\examples\zIndexes.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\FixedHeader\js\dataTables.fixedHeader.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\FixedHeader\js\dataTables.fixedHeader.min.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\FixedHeader\Readme.txt" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\KeyTable\css\dataTables.keyTable.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\KeyTable\css\dataTables.keyTable.min.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\KeyTable\examples\events.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\KeyTable\examples\html.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\KeyTable\examples\index.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\KeyTable\examples\scrolling.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\KeyTable\examples\simple.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\KeyTable\js\dataTables.keyTable.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\KeyTable\js\dataTables.keyTable.min.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\KeyTable\Readme.txt" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\Responsive\css\dataTables.responsive.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\Responsive\examples\child-rows\column-control.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\Responsive\examples\child-rows\custom-renderer.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\Responsive\examples\child-rows\disable-child-rows.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\Responsive\examples\child-rows\index.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\Responsive\examples\child-rows\right-column.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\Responsive\examples\child-rows\whole-row-control.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\Responsive\examples\display-control\auto.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\Responsive\examples\display-control\classes.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\Responsive\examples\display-control\complexHeader.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\Responsive\examples\display-control\fixedHeader.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\Responsive\examples\display-control\index.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\Responsive\examples\display-control\init-classes.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\Responsive\examples\index.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\Responsive\examples\initialisation\ajax.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\Responsive\examples\initialisation\className.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\Responsive\examples\initialisation\default.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\Responsive\examples\initialisation\index.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\Responsive\examples\initialisation\new.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\Responsive\examples\initialisation\option.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\Responsive\examples\styling\bootstrap.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\Responsive\examples\styling\compact.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\Responsive\examples\styling\foundation.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\Responsive\examples\styling\index.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\Responsive\examples\styling\scrolling.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\Responsive\js\dataTables.responsive.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\Responsive\js\dataTables.responsive.min.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\Responsive\License.txt" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\Scroller\css\dataTables.scroller.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\Scroller\css\dataTables.scroller.min.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\Scroller\examples\api_scrolling.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\Scroller\examples\data\2500.txt" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\Scroller\examples\index.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\Scroller\examples\large_js_source.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\Scroller\examples\server-side_processing.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\Scroller\examples\simple.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\Scroller\examples\state_saving.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\Scroller\images\loading-background.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\Scroller\js\dataTables.scroller.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\Scroller\js\dataTables.scroller.min.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\Scroller\Readme.txt" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\TableTools\css\dataTables.tableTools.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\TableTools\css\dataTables.tableTools.min.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\TableTools\examples\ajax.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\TableTools\examples\alter_buttons.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\TableTools\examples\bootstrap.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\TableTools\examples\button_text.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\TableTools\examples\collection.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\TableTools\examples\defaults.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\TableTools\examples\index.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\TableTools\examples\jqueryui.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\TableTools\examples\multiple_tables.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\TableTools\examples\multi_instance.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\TableTools\examples\new_init.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\TableTools\examples\pdf_message.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\TableTools\examples\plug-in.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\TableTools\examples\select_column.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\TableTools\examples\select_multi.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\TableTools\examples\select_os.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\TableTools\examples\select_single.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\TableTools\examples\simple.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\TableTools\examples\swf_path.html" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\TableTools\images\collection.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\TableTools\images\collection_hover.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\TableTools\images\copy.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\TableTools\images\copy_hover.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\TableTools\images\csv.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\TableTools\images\csv_hover.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\TableTools\images\pdf.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\TableTools\images\pdf_hover.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\TableTools\images\print.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\TableTools\images\print_hover.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\TableTools\images\xls.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\TableTools\images\xls_hover.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\TableTools\js\dataTables.tableTools.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\TableTools\js\dataTables.tableTools.min.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\TableTools\swf\copy_csv_xls.swf" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\extensions\TableTools\swf\copy_csv_xls_pdf.swf" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\images\sort_asc.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\images\sort_asc_disabled.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\images\sort_both.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\images\sort_desc.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\images\sort_desc_disabled.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\jquery.dataTables.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\jquery.dataTables.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\jquery.dataTables.min.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\jquery.dataTables.min.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datatables\jquery.dataTables_themeroller.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datepicker\bootstrap-datepicker.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\datepicker\datepicker3.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\daterangepicker\daterangepicker-bs3.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\daterangepicker\daterangepicker.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\daterangepicker\moment.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\daterangepicker\moment.min.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\fastclick\fastclick.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\fastclick\fastclick.min.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\flot\excanvas.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\flot\excanvas.min.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\flot\jquery.colorhelpers.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\flot\jquery.colorhelpers.min.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\flot\jquery.flot.canvas.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\flot\jquery.flot.canvas.min.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\flot\jquery.flot.categories.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\flot\jquery.flot.categories.min.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\flot\jquery.flot.crosshair.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\flot\jquery.flot.crosshair.min.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\flot\jquery.flot.errorbars.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\flot\jquery.flot.errorbars.min.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\flot\jquery.flot.fillbetween.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\flot\jquery.flot.fillbetween.min.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\flot\jquery.flot.image.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\flot\jquery.flot.image.min.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\flot\jquery.flot.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\flot\jquery.flot.min.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\flot\jquery.flot.navigate.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\flot\jquery.flot.navigate.min.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\flot\jquery.flot.pie.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\flot\jquery.flot.pie.min.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\flot\jquery.flot.resize.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\flot\jquery.flot.resize.min.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\flot\jquery.flot.selection.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\flot\jquery.flot.selection.min.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\flot\jquery.flot.stack.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\flot\jquery.flot.stack.min.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\flot\jquery.flot.symbol.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\flot\jquery.flot.symbol.min.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\flot\jquery.flot.threshold.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\flot\jquery.flot.threshold.min.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\flot\jquery.flot.time.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\flot\jquery.flot.time.min.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\fullcalendar\fullcalendar.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\fullcalendar\fullcalendar.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\fullcalendar\fullcalendar.min.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\fullcalendar\fullcalendar.min.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\fullcalendar\fullcalendar.print.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\all.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\flat\aero%402x.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\flat\aero.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\flat\aero.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\flat\blue%402x.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\flat\blue.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\flat\blue.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\flat\flat%402x.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\flat\flat.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\flat\flat.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\flat\green%402x.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\flat\green.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\flat\green.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\flat\grey%402x.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\flat\grey.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\flat\grey.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\flat\orange%402x.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\flat\orange.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\flat\orange.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\flat\pink%402x.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\flat\pink.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\flat\pink.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\flat\purple%402x.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\flat\purple.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\flat\purple.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\flat\red%402x.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\flat\red.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\flat\red.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\flat\yellow%402x.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\flat\yellow.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\flat\yellow.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\flat\_all.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\futurico\futurico%402x.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\futurico\futurico.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\futurico\futurico.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\icheck.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\icheck.min.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\line\aero.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\line\blue.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\line\green.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\line\grey.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\line\line%402x.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\line\line.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\line\line.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\line\orange.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\line\pink.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\line\purple.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\line\red.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\line\yellow.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\line\_all.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\minimal\aero%402x.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\minimal\aero.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\minimal\aero.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\minimal\blue%402x.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\minimal\blue.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\minimal\blue.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\minimal\green%402x.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\minimal\green.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\minimal\green.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\minimal\grey%402x.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\minimal\grey.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\minimal\grey.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\minimal\minimal%402x.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\minimal\minimal.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\minimal\minimal.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\minimal\orange%402x.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\minimal\orange.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\minimal\orange.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\minimal\pink%402x.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\minimal\pink.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\minimal\pink.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\minimal\purple%402x.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\minimal\purple.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\minimal\purple.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\minimal\red%402x.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\minimal\red.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\minimal\red.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\minimal\yellow%402x.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\minimal\yellow.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\minimal\yellow.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\minimal\_all.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\polaris\polaris%402x.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\polaris\polaris.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\polaris\polaris.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\square\aero%402x.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\square\aero.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\square\aero.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\square\blue%402x.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\square\blue.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\square\blue.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\square\green%402x.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\square\green.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\square\green.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\square\grey%402x.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\square\grey.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\square\grey.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\square\orange%402x.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\square\orange.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\square\orange.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\square\pink%402x.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\square\pink.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\square\pink.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\square\purple%402x.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\square\purple.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\square\purple.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\square\red%402x.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\square\red.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\square\red.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\square\square%402x.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\square\square.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\square\square.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\square\yellow%402x.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\square\yellow.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\square\yellow.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\iCheck\square\_all.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\input-mask\jquery.inputmask.date.extensions.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\input-mask\jquery.inputmask.extensions.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\input-mask\jquery.inputmask.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\input-mask\jquery.inputmask.numeric.extensions.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\input-mask\jquery.inputmask.phone.extensions.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\input-mask\jquery.inputmask.regex.extensions.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\input-mask\phone-codes\readme.txt" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ionslider\img\sprite-skin-flat.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ionslider\img\sprite-skin-nice.png" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ionslider\ion.rangeSlider.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ionslider\ion.rangeSlider.min.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ionslider\ion.rangeSlider.skinFlat.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\ionslider\ion.rangeSlider.skinNice.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\jQueryUI\jquery-ui.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\jQueryUI\jquery-ui.min.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\jQuery\jQuery-2.1.4.min.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\jvectormap\jquery-jvectormap-1.2.2.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\jvectormap\jquery-jvectormap-1.2.2.min.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\jvectormap\jquery-jvectormap-world-mill-en.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\knob\jquery.knob.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\morris\morris.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\morris\morris.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\morris\morris.min.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\pace\pace.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\select2\i18n\en.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\select2\select2.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\select2\select2.full.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\select2\select2.full.min.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\select2\select2.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\select2\select2.min.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\select2\select2.min.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\slimScroll\jquery.slimscroll.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\slimScroll\jquery.slimscroll.min.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\sorttable.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\sparkline\jquery.sparkline.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\sparkline\jquery.sparkline.min.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\timepicker\bootstrap-timepicker.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\timepicker\bootstrap-timepicker.js" />
+    <EmbeddedResource Include="WebServer\Views\plugins\timepicker\bootstrap-timepicker.min.css" />
+    <EmbeddedResource Include="WebServer\Views\plugins\timepicker\bootstrap-timepicker.min.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="WebServer\Views\plugins\datepicker\locales\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <Import Project="..\packages\Resource.Embedder.1.2.4\build\Resource.Embedder.targets" Condition="Exists('..\packages\Resource.Embedder.1.2.4\build\Resource.Embedder.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Dieses Projekt verweist auf mindestens ein NuGet-Paket, das auf diesem Computer fehlt. Verwenden Sie die Wiederherstellung von NuGet-Paketen, um die fehlenden Dateien herunterzuladen. Weitere Informationen finden Sie unter "http://go.microsoft.com/fwlink/?LinkID=322105". Die fehlende Datei ist "{0}".</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Resource.Embedder.1.2.4\build\Resource.Embedder.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Resource.Embedder.1.2.4\build\Resource.Embedder.targets'))" />
+    <Error Condition="!Exists('..\packages\Fody.2.0.0\build\dotnet\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.2.0.0\build\dotnet\Fody.targets'))" />
+    <Error Condition="!Exists('..\packages\Costura.Fody.1.6.2\build\dotnet\Costura.Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Costura.Fody.1.6.2\build\dotnet\Costura.Fody.targets'))" />
+  </Target>
+  <Import Project="..\packages\Fody.2.0.0\build\dotnet\Fody.targets" Condition="Exists('..\packages\Fody.2.0.0\build\dotnet\Fody.targets')" />
+  <Import Project="..\packages\Costura.Fody.1.6.2\build\dotnet\Costura.Fody.targets" Condition="Exists('..\packages\Costura.Fody.1.6.2\build\dotnet\Costura.Fody.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
